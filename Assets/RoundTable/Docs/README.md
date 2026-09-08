@@ -85,7 +85,6 @@ Assets/RoundTable/
     README.md    このファイル
     ArtSpec.md   入稿サイズ・ファイル名一覧
     Online.md    通信対戦のセットアップ手順
-    Build.md     スマホ向けビルド（WebGL → GitHub Pages）の手順
 ```
 
 ---
@@ -191,16 +190,6 @@ Assets/RoundTable/
 - 自分は自分のファイルだけ書き、相手のファイルだけ読むので**書き込み衝突が起きない**
 - 反映まで2〜4秒。ターン制なので実用範囲
 - トークンは PlayerPrefs に平文保存。**第三者に配布するビルドには入れないこと**
-
-## スマホで遊ぶ
-
-`Docs/Build.md` を参照。要点だけ:
-
-- Unity エディタを開かなくても、**main に push すれば GitHub Actions が WebGL でビルド**して
-  GitHub Pages に公開する（`.github/workflows/webgl-pages.yml`）
-- 公開先 `https://miifu555.github.io/RoundTableRepo/` をスマホのブラウザで開けば、インストール不要で遊べる
-- 最初の1回だけ、Unity ライセンスの Secrets 登録と Pages の有効化が要る
-- 操作は uGUI のタップなのでそのまま動く。**横向き**前提
 
 ## バランスの実測値（参考）
 
