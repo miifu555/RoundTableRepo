@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864330d72a1f916489baa628d4b1da6d, type: 3}
+  m_Name: sudo
+  m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
+  DeckId: sudo
+  CharacterName: "\u3059\u3069\u30FC"
+  Archetype: "\u30A2\u30B0\u30ED(\u9664\u53BB)"
+  DrawStyle: 1
+  Portrait: {fileID: 0}
+  PortraitIcon: {fileID: 0}
+  Entries:
+  - Card: {fileID: 3501289875244689297, guid: 33aee1ef5cf84e647a2ece9e80c6f031, type: 3}
+    Count: 3
+  - Card: {fileID: 4631698468082114115, guid: 85198802113011844a8710a1ff7bf855, type: 3}
+    Count: 2
+  - Card: {fileID: 743470638499627743, guid: b99a64bda0df8f142bddd80c4b640547, type: 3}
+    Count: 4
+  - Card: {fileID: 7044795385840033673, guid: f85855c49cd5e214db86f913ee0a88e6, type: 3}
+    Count: 4
+  - Card: {fileID: 5215964644851703466, guid: ca8e5f81431f384439fcc67ee91ae0d3, type: 3}
+    Count: 2

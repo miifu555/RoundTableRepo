@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864330d72a1f916489baa628d4b1da6d, type: 3}
+  m_Name: apollo
+  m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
+  DeckId: apollo
+  CharacterName: "\u3042\u307D\u308D"
+  Archetype: "\u30B3\u30F3\u30C8\u30ED\u30FC\u30EB(\u624B\u672D\u5E72\u6E09)"
+  DrawStyle: 0
+  Portrait: {fileID: 0}
+  PortraitIcon: {fileID: 0}
+  Entries:
+  - Card: {fileID: 7751316265638324524, guid: 50788c6752d2a6645b52009b2449087b, type: 3}
+    Count: 3
+  - Card: {fileID: 6901414365705703593, guid: e6ee0cfaea919474fbf689839aadf952, type: 3}
+    Count: 3
+  - Card: {fileID: 7648930637423049493, guid: 1b5c221492cb06942a717f67f5661491, type: 3}
+    Count: 1
+  - Card: {fileID: 5119797132250387773, guid: 8e2a305bf6caeed4d9af1d94a617283b, type: 3}
+    Count: 2
+  - Card: {fileID: 1038390145983175752, guid: 7f7359e30478096499aaf1c347d42644, type: 3}
+    Count: 6

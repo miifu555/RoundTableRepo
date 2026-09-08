@@ -1,0 +1,2 @@
+﻿キャラの立ち絵 512 x 768 px → デッキID.png（例: toshi.png）
+顔アイコン 256 x 256 px → デッキID_icon.png（例: toshi_icon.png）

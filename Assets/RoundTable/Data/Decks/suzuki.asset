@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864330d72a1f916489baa628d4b1da6d, type: 3}
+  m_Name: suzuki
+  m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
+  DeckId: suzuki
+  CharacterName: "\u9234\u6728"
+  Archetype: "\u30A2\u30B0\u30ED(\u904B\u30E1\u30A4\u30F3)"
+  DrawStyle: 1
+  Portrait: {fileID: 0}
+  PortraitIcon: {fileID: 0}
+  Entries:
+  - Card: {fileID: 1345566135835329579, guid: 5a07b09127f8ec54abd4a8487f7bf1dc, type: 3}
+    Count: 2
+  - Card: {fileID: 5860819182379779225, guid: 425b2e847d64aaf4487e9b448a836255, type: 3}
+    Count: 4
+  - Card: {fileID: 6750846214579370080, guid: e9c775a3b5d0e5f47a842c06bd2ec4dd, type: 3}
+    Count: 2
+  - Card: {fileID: 2938608782260330410, guid: 2bfbd9ad8a063d64b956d1e95de2a91a, type: 3}
+    Count: 2
+  - Card: {fileID: 3136024434574820041, guid: 8b9b898782e20284287f4429537771b9, type: 3}
+    Count: 3
+  - Card: {fileID: 8568891516588556255, guid: 8153df8827311234fbae5ac533aa11d6, type: 3}
+    Count: 2

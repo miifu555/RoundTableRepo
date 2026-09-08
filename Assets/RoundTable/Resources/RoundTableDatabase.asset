@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a417cfcd6ea1b06438167c373516b56e, type: 3}
+  m_Name: RoundTableDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.GameDatabase
+  Decks:
+  - {fileID: 11400000, guid: 2936780acedce714eab6217c3d7f91ed, type: 2}
+  - {fileID: 11400000, guid: 09aa79bbc67012940a8aedfb01443a20, type: 2}
+  - {fileID: 11400000, guid: 4ba7452f883eeff468c132182c127483, type: 2}
+  - {fileID: 11400000, guid: b94c0c42051c31d4b8db718e01af8037, type: 2}
+  - {fileID: 11400000, guid: 9ea18b235a091cc4b97c4403ba4e303e, type: 2}
+  - {fileID: 11400000, guid: 0efdfad5cbb4ce94cb4bd1ca9bb7ae77, type: 2}
+  - {fileID: 11400000, guid: 0ab250101631e1841a9743809cdc12c2, type: 2}
+  - {fileID: 11400000, guid: 6a5ffe659e4ecc346ae7b9bdc15313d0, type: 2}
+  - {fileID: 11400000, guid: 1f3bbe93f2e68cf43bd6a3b40cad7311, type: 2}
+  - {fileID: 11400000, guid: 32cc4c3b8a8897a48bed905bbe254f63, type: 2}
+  - {fileID: 11400000, guid: 19ab3cbd36c7cec4f8fbac4248750533, type: 2}
+  CardBack: {fileID: 0}
+  BattleBackground: {fileID: 0}
+  TitleBackground: {fileID: 0}
+  DaoOn: {fileID: 0}
+  DaoOff: {fileID: 0}
+  Font: {fileID: 11400000, guid: 026df6568a42045439ef34913f798f6f, type: 2}
+  FontBold: {fileID: 11400000, guid: 7106e4f34c7264842b2223224b337d80, type: 2}

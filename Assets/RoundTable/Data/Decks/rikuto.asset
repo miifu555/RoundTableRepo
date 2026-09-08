@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864330d72a1f916489baa628d4b1da6d, type: 3}
+  m_Name: rikuto
+  m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
+  DeckId: rikuto
+  CharacterName: "\u308A\u304F\u3068"
+  Archetype: "\u30A2\u30B0\u30ED(\u30DF\u30C3\u30C9\u30EC\u30F3\u30B8)"
+  DrawStyle: 1
+  Portrait: {fileID: 0}
+  PortraitIcon: {fileID: 0}
+  Entries:
+  - Card: {fileID: 1666240523468873641, guid: 9086851d3657e824a959e25c3eec7059, type: 3}
+    Count: 3
+  - Card: {fileID: 2557977937624806610, guid: af323e75c6f49b14ca647c4b79acc656, type: 3}
+    Count: 3
+  - Card: {fileID: 6890601512199175956, guid: 68c29d687d13b674e8a0859ebab77373, type: 3}
+    Count: 3
+  - Card: {fileID: 7730252739701679439, guid: c743a43f164c14d4dac46810ecc4d5c4, type: 3}
+    Count: 3
+  - Card: {fileID: 1538609959134663078, guid: b432773cd58c6d5488cb40e6d22c64cf, type: 3}
+    Count: 3

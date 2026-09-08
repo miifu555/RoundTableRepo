@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864330d72a1f916489baa628d4b1da6d, type: 3}
+  m_Name: kono
+  m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
+  DeckId: kono
+  CharacterName: "\u3053\u3046\u306E"
+  Archetype: "\u30A2\u30B0\u30ED(\u5FC5\u6BBA)"
+  DrawStyle: 0
+  Portrait: {fileID: 0}
+  PortraitIcon: {fileID: 0}
+  Entries:
+  - Card: {fileID: 2692718376891848157, guid: 0d8291b4f2a1ac846805a704fb96cf51, type: 3}
+    Count: 7
+  - Card: {fileID: 6009831755605937821, guid: 2e07a60a8587d4d4e849bf8e20fc0088, type: 3}
+    Count: 4
+  - Card: {fileID: 6386899960918812688, guid: 64c5aa3f855b05b4d8ead9e7de71253e, type: 3}
+    Count: 2
+  - Card: {fileID: 8714857657534972173, guid: e661ae7cbf55c804eab2b7bd8614b2d9, type: 3}
+    Count: 2

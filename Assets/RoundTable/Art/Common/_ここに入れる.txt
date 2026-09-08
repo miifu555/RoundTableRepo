@@ -1,0 +1,5 @@
+﻿card_back.png  500 x 700（カード裏面）
+bg_battle.png  1920 x 1080（対戦背景）
+bg_title.png   1920 x 1080（タイトル/デッキ選択背景）
+dao_on.png     96 x 96（^^ 獲得済み）
+dao_off.png    96 x 96（^^ 未獲得）

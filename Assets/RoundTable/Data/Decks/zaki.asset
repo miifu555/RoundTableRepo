@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864330d72a1f916489baa628d4b1da6d, type: 3}
+  m_Name: zaki
+  m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
+  DeckId: zaki
+  CharacterName: "\u3056\u304D"
+  Archetype: "\u30B3\u30F3\u30C8\u30ED\u30FC\u30EB(\u76E4\u9762\u59A8\u5BB3)"
+  DrawStyle: 0
+  Portrait: {fileID: 0}
+  PortraitIcon: {fileID: 0}
+  Entries:
+  - Card: {fileID: 5433728125699997265, guid: b1f4fb23a3bc6a5418fd9d700f4b709d, type: 3}
+    Count: 3
+  - Card: {fileID: 8078618589101540486, guid: 1ffba7fa180fc114f944bb2634878da8, type: 3}
+    Count: 3
+  - Card: {fileID: 283820635950147332, guid: e5aa49bdc6ca01a4ea2e4785ff5c9111, type: 3}
+    Count: 1
+  - Card: {fileID: 5822982888495069802, guid: bad9165a0ec393440a27e4d7c164ee54, type: 3}
+    Count: 2
+  - Card: {fileID: 5751608379531012456, guid: bf779b2248d54aa4c85d1c86daf99d27, type: 3}
+    Count: 4
+  - Card: {fileID: 3566539172707327121, guid: a0f044c4d48b988479b84633be314d7f, type: 3}
+    Count: 2
