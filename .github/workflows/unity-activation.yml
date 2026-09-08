@@ -1,0 +1,23 @@
+# Unity のライセンスファイル(.ulf)を作るための下準備。最初に1回だけ手動で走らせる。
+# 手順の全体は Assets/RoundTable/Docs/Build.md を参照。
+name: Unity ライセンス申請ファイル(.alf)を作る
+
+on:
+  workflow_dispatch:
+
+jobs:
+  activation:
+    name: .alf を作る
+    runs-on: ubuntu-latest
+    steps:
+      - name: 申請ファイルを生成
+        id: request
+        uses: game-ci/unity-request-activation-file@v2
+        with:
+          unityVersion: 6000.3.8f1
+
+      - name: 成果物として持ち出す
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-activation-file
+          path: ${{ steps.request.outputs.filePath }}
