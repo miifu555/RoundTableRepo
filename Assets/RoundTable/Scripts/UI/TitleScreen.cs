@@ -44,7 +44,9 @@ namespace RoundTable.UI
             _cfg.Load();
 
             if (RepoInfoText != null)
-                RepoInfoText.text = $"対戦に使うリポジトリ: <b>{OnlineConfig.RepoDisplay}</b>（固定）";
+                RepoInfoText.text = OnlineConfig.HasBuiltInToken
+                    ? $"対戦に使うリポジトリ: <b>{OnlineConfig.RepoDisplay}</b>（固定 / トークン組み込み済み）"
+                    : $"対戦に使うリポジトリ: <b>{OnlineConfig.RepoDisplay}</b>（固定）";
 
             // 旧レイアウトのシーンだと入力欄が残っているので、固定値を出して触れないようにする
             LockToFixed(OwnerField, _cfg.Owner);
@@ -54,7 +56,18 @@ namespace RoundTable.UI
             if (TokenField != null)
             {
                 TokenField.contentType = TMP_InputField.ContentType.Password;
-                TokenField.text = _cfg.Token;
+                if (OnlineConfig.HasBuiltInToken)
+                {
+                    // ビルドにトークンが焼き込まれているので、入力させない
+                    TokenField.text = "";
+                    TokenField.readOnly = true;
+                    TokenField.interactable = false;
+                    if (TokenField.placeholder is TMP_Text ph) ph.text = "ビルドに組み込み済み（入力不要）";
+                }
+                else
+                {
+                    TokenField.text = _cfg.Token;
+                }
             }
             if (RoomField != null) RoomField.text = _cfg.RoomId;
             if (HostToggle != null) HostToggle.isOn = _cfg.IsHost;
@@ -111,6 +124,11 @@ namespace RoundTable.UI
             StatusText.color = error ? new Color(0.855f, 0.353f, 0.290f) : new Color(0.639f, 0.616f, 0.588f);
         }
 
+        static string MissingInputMessage()
+            => OnlineConfig.HasBuiltInToken
+                ? "部屋名を入力してください。"
+                : "アクセストークンと部屋名を入力してください。";
+
         void StartHotSeat()
         {
             GameSession.Mode = MatchMode.HotSeat;
@@ -120,7 +138,7 @@ namespace RoundTable.UI
 
         void PullFields()
         {
-            if (TokenField != null) _cfg.Token = TokenField.text.Trim();
+            if (TokenField != null && !OnlineConfig.HasBuiltInToken) _cfg.Token = TokenField.text.Trim();
             if (RoomField != null) _cfg.RoomId = RoomField.text.Trim();
             if (HostToggle != null) _cfg.IsHost = HostToggle.isOn;
         }
@@ -130,7 +148,7 @@ namespace RoundTable.UI
             PullFields();
             if (!_cfg.IsComplete)
             {
-                SetStatus("アクセストークンと部屋名を入力してください。", true);
+                SetStatus(MissingInputMessage(), true);
                 yield break;
             }
 
@@ -152,7 +170,7 @@ namespace RoundTable.UI
             PullFields();
             if (!_cfg.IsComplete)
             {
-                SetStatus("アクセストークンと部屋名を入力してください。", true);
+                SetStatus(MissingInputMessage(), true);
                 return;
             }
             _cfg.Save();

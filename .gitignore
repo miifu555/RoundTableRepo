@@ -104,3 +104,8 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# 通信対戦の共有トークン（ビルドに焼き込む用）。絶対にコミットしないこと。
+# 作成/削除は Unity の「Round Table / 通信トークンを設定」から。
+/[Aa]ssets/RoundTable/Resources/RoundTableToken.txt
+/[Aa]ssets/RoundTable/Resources/RoundTableToken.txt.meta

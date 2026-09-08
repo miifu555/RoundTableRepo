@@ -43,7 +43,7 @@ namespace RoundTable.Net
 
         void AddHeaders(UnityWebRequest req)
         {
-            req.SetRequestHeader("Authorization", "Bearer " + _cfg.Token);
+            req.SetRequestHeader("Authorization", "Bearer " + _cfg.EffectiveToken);
             req.SetRequestHeader("Accept", "application/vnd.github+json");
             req.SetRequestHeader("X-GitHub-Api-Version", "2022-11-28");
             req.SetRequestHeader("User-Agent", "RoundTable-Unity");

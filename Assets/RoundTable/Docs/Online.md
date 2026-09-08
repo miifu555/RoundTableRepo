@@ -40,7 +40,7 @@ Private のままで構いません。その場合、**一緒に遊ぶ人を Set
 > 別のリポジトリに移したくなったら `Assets/RoundTable/Scripts/Net/OnlineConfig.cs` の
 > `FixedOwner` / `FixedRepo` / `FixedBranch` を書き換えます（全員が同じビルドを使うこと）。
 
-### 2. アクセストークンを作る（2人ともそれぞれ）
+### 2. アクセストークンを作る
 
 GitHub → Settings → Developer settings → **Personal access tokens → Fine-grained tokens** → Generate new token
 
@@ -52,8 +52,32 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 
 他の権限は不要です。生成された `github_pat_...` をコピーしておきます。
 
-> トークンは**人ごとに別々**です。オーナーでない側は、コラボレーター招待を受けてから
-> 自分のアカウントで同じ手順のトークンを作ります。
+ここから先は2通りあります。
+
+#### A. ビルドに焼き込む（推奨・遊ぶ人は入力不要）
+
+**1本のトークンを全員で共有**し、ビルドの中に入れてしまう方法です。少人数の身内だけで遊ぶならこれが楽です。
+配る相手はトークンを一切触りません（入力欄は「ビルドに組み込み済み」と出て触れなくなります）。
+
+1. Unity メニュー **「Round Table / 通信トークンを設定」**
+2. トークンを貼って **「保存（ビルドに焼き込む）」**
+3. そのままビルドして、できたものを全員に配る
+
+保存先は `Assets/RoundTable/Resources/RoundTableToken.txt` で、**`.gitignore` 済み**なので
+GitHub には上がりません（この方式ではコラボレーター招待も不要です。全員がオーナーのトークンで書き込むため）。
+
+> ⚠️ **ビルドの中身を覗けばトークンは取り出せます。** 承知のうえで使ってください。
+> 対策として、トークンは必ず fine-grained で `RoundTableLobby` の Contents だけに限定し、
+> 配る相手を身内に限り、遊ばなくなったら失効させてください。
+> 悪用されても被害はこのリポジトリのファイルの読み書きだけに収まります。
+> **ブラウザ(WebGL)で公開する場合は誰でも取り出せるので、焼き込まないでください。**
+
+#### B. 各自で入力する（焼き込まない場合）
+
+上のトークンを**人ごとに別々に**作り、タイトル画面で各自が入力します。
+オーナーでない側は、コラボレーター招待を受けてから自分のアカウントでトークンを作ります。
+
+焼き込みファイルが無いビルドは自動的にこちらの動作になります。
 
 ### 3. ゲーム側に入力
 
@@ -61,11 +85,12 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 
 | 欄 | 入れるもの |
 |---|---|
-| アクセストークン | 上で作った `github_pat_...` |
+| アクセストークン | 上で作った `github_pat_...`（**焼き込み済みなら入力不要**） |
 | 部屋名 | **2人で同じ文字列**にする（例: `room1`） |
 | 自分がホスト | **片方だけ ON**、もう片方は OFF |
 
 所有者・リポジトリ名・ブランチは固定なので入力欄はありません（画面上部に固定先が出ます）。
+トークンを焼き込んだビルドなら、**入力するのは部屋名とホストON/OFFだけ**です。
 
 「接続テスト」で緑の OK が出れば準備完了です。設定はトークンも含めて保存されるので、次回からは入力不要です。
 
@@ -96,6 +121,7 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 | ラウンド間の自動送り時間 | `MatchController` の `Time.time - _roundOverAt > 6f` |
 | 部屋のファイル配置を変える | `OnlineConfig.LocalPath` / `RemotePath` |
 | 使うリポジトリを変える | `OnlineConfig.FixedOwner` / `FixedRepo` / `FixedBranch` |
+| トークンの焼き込み | メニュー「Round Table / 通信トークンを設定」 |
 
 ### API のレート制限
 
@@ -106,8 +132,9 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 
 ## セキュリティ上の注意
 
-- トークンは **PlayerPrefs に平文で保存**されます（Windows ではレジストリ）。
-  知人間の利用を前提とした割り切りです。**第三者に配布するビルドには入れないでください。**
+- 各自入力の場合、トークンは **PlayerPrefs に平文で保存**されます（Windows ではレジストリ）。
+  焼き込みの場合は端末側には保存されませんが、**ビルドの中から取り出せます**。
+  どちらも知人間の利用を前提とした割り切りです。**第三者に配るビルドには入れないでください。**
 - 必ず **fine-grained トークン**で、**対象リポジトリを1つに限定**してください。
   classic token（全リポジトリにアクセスできる）は使わないこと。
 - 対戦ログには操作しか含まれませんが、リポジトリが Public だと誰でも読めます。`RoundTableLobby` は Private 推奨です。

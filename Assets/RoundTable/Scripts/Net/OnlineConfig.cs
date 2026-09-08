@@ -17,6 +17,13 @@ namespace RoundTable.Net
         public const string FixedRepo = "RoundTableLobby";
         public const string FixedBranch = "main";
 
+        /// <summary>
+        /// ビルドに焼き込む共有トークンの置き場所。
+        /// Assets/RoundTable/Resources/RoundTableToken.txt に github_pat_... を1行書いておくと、
+        /// プレイヤーはトークンを入力しなくてよくなる（ファイルは .gitignore 済み。リポジトリには入れないこと）。
+        /// </summary>
+        public const string TokenResourceName = "RoundTableToken";
+
         const string KeyToken = "RT.gh.token";
         const string KeyRoom = "RT.gh.room";
         const string KeyHost = "RT.gh.isHost";
@@ -33,7 +40,7 @@ namespace RoundTable.Net
         /// <summary>画面に出すための "所有者/リポジトリ名"。</summary>
         public static string RepoDisplay => $"{FixedOwner}/{FixedRepo}";
 
-        [Tooltip("Personal Access Token (fine-grained / Contents: Read and write)。人ごとに違う。")]
+        [Tooltip("Personal Access Token (fine-grained / Contents: Read and write)。焼き込みトークンが無いときだけ使う。")]
         public string Token = "";
         [Tooltip("部屋名。対戦する2人で同じ文字列にする。")]
         public string RoomId = "room1";
@@ -43,6 +50,28 @@ namespace RoundTable.Net
         [Tooltip("相手のファイルを見に行く間隔(秒)。短くすると反応が早いがAPI消費が増える。")]
         public float PollIntervalSeconds = 2f;
 
+        static string _builtInToken;
+        static bool _builtInLoaded;
+
+        /// <summary>ビルドに焼き込まれた共有トークン。無ければ空。</summary>
+        public static string BuiltInToken
+        {
+            get
+            {
+                if (_builtInLoaded) return _builtInToken;
+                _builtInLoaded = true;
+                var asset = Resources.Load<TextAsset>(TokenResourceName);
+                _builtInToken = asset == null ? "" : asset.text.Trim();
+                return _builtInToken;
+            }
+        }
+
+        /// <summary>共有トークンが焼き込まれているか。true なら画面での入力は不要。</summary>
+        public static bool HasBuiltInToken => !string.IsNullOrWhiteSpace(BuiltInToken);
+
+        /// <summary>実際に通信で使うトークン。焼き込みがあればそちらを優先する。</summary>
+        public string EffectiveToken => HasBuiltInToken ? BuiltInToken : Token;
+
         public int LocalRole => IsHost ? 0 : 1;
         public int RemoteRole => IsHost ? 1 : 0;
 
@@ -50,7 +79,7 @@ namespace RoundTable.Net
         public string RemotePath => $"rooms/{Sanitize(RoomId)}/p{RemoteRole}.json";
 
         public bool IsComplete =>
-            !string.IsNullOrWhiteSpace(Token) &&
+            !string.IsNullOrWhiteSpace(EffectiveToken) &&
             !string.IsNullOrWhiteSpace(RoomId);
 
         public static string Sanitize(string s)
@@ -67,7 +96,8 @@ namespace RoundTable.Net
 
         public void Save()
         {
-            PlayerPrefs.SetString(KeyToken, Token ?? "");
+            // 焼き込みトークンを使っているときは、端末側に控えを残さない
+            PlayerPrefs.SetString(KeyToken, HasBuiltInToken ? "" : (Token ?? ""));
             PlayerPrefs.SetString(KeyRoom, RoomId ?? "");
             PlayerPrefs.SetInt(KeyHost, IsHost ? 1 : 0);
             PlayerPrefs.Save();
