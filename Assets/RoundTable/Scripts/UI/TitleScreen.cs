@@ -17,9 +17,7 @@ namespace RoundTable.UI
 
         [Header("通信設定")]
         public GameObject OnlinePanel;
-        public TMP_InputField OwnerField;
-        public TMP_InputField RepoField;
-        public TMP_InputField BranchField;
+        public TMP_Text RepoInfoText;
         public TMP_InputField TokenField;
         public TMP_InputField RoomField;
         public Toggle HostToggle;
@@ -28,6 +26,12 @@ namespace RoundTable.UI
         public Button OnlineStartButton;
         public Button OnlineBackButton;
         public TMP_Text StatusText;
+
+        [Header("旧レイアウト用（シーンを作り直せば不要）")]
+        [Tooltip("リポジトリは固定になったので、繋がっていても入力不可にして固定値を出すだけ。")]
+        public TMP_InputField OwnerField;
+        public TMP_InputField RepoField;
+        public TMP_InputField BranchField;
 
         OnlineConfig _cfg;
         bool _testing;
@@ -39,9 +43,14 @@ namespace RoundTable.UI
             _cfg = GameSession.Online;
             _cfg.Load();
 
-            if (OwnerField != null) OwnerField.text = _cfg.Owner;
-            if (RepoField != null) RepoField.text = _cfg.Repo;
-            if (BranchField != null) BranchField.text = string.IsNullOrEmpty(_cfg.Branch) ? "main" : _cfg.Branch;
+            if (RepoInfoText != null)
+                RepoInfoText.text = $"対戦に使うリポジトリ: <b>{OnlineConfig.RepoDisplay}</b>（固定）";
+
+            // 旧レイアウトのシーンだと入力欄が残っているので、固定値を出して触れないようにする
+            LockToFixed(OwnerField, _cfg.Owner);
+            LockToFixed(RepoField, _cfg.Repo);
+            LockToFixed(BranchField, _cfg.Branch);
+
             if (TokenField != null)
             {
                 TokenField.contentType = TMP_InputField.ContentType.Password;
@@ -61,6 +70,15 @@ namespace RoundTable.UI
             ShowOnlinePanel(false);
             UpdateRoleHint();
             SetStatus("");
+        }
+
+        /// <summary>固定値を表示するだけの、触れない入力欄にする。</summary>
+        static void LockToFixed(TMP_InputField field, string value)
+        {
+            if (field == null) return;
+            field.text = value;
+            field.readOnly = true;
+            field.interactable = false;
         }
 
         static void Wire(Button b, UnityEngine.Events.UnityAction action)
@@ -102,9 +120,6 @@ namespace RoundTable.UI
 
         void PullFields()
         {
-            if (OwnerField != null) _cfg.Owner = OwnerField.text.Trim();
-            if (RepoField != null) _cfg.Repo = RepoField.text.Trim();
-            if (BranchField != null) _cfg.Branch = string.IsNullOrWhiteSpace(BranchField.text) ? "main" : BranchField.text.Trim();
             if (TokenField != null) _cfg.Token = TokenField.text.Trim();
             if (RoomField != null) _cfg.RoomId = RoomField.text.Trim();
             if (HostToggle != null) _cfg.IsHost = HostToggle.isOn;
@@ -115,7 +130,7 @@ namespace RoundTable.UI
             PullFields();
             if (!_cfg.IsComplete)
             {
-                SetStatus("所有者 / リポジトリ / トークン / 部屋名 をすべて入力してください。", true);
+                SetStatus("アクセストークンと部屋名を入力してください。", true);
                 yield break;
             }
 
@@ -137,7 +152,7 @@ namespace RoundTable.UI
             PullFields();
             if (!_cfg.IsComplete)
             {
-                SetStatus("所有者 / リポジトリ / トークン / 部屋名 をすべて入力してください。", true);
+                SetStatus("アクセストークンと部屋名を入力してください。", true);
                 return;
             }
             _cfg.Save();

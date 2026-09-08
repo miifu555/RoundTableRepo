@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using RoundTable.App;
 using RoundTable.Data;
+using RoundTable.Net;
 using RoundTable.UI;
 using TMPro;
 using UnityEditor;
@@ -141,50 +142,51 @@ namespace RoundTable.EditorTools
             var online = UiBuilder.TextButton(mode, "OnlineButton", 0, 210, 800, 110,
                 "通信対戦（GitHub経由）", 30, UiBuilder.GoldDim, Color.white);
             UiBuilder.Text(mode, "OnlineHint", 0, 328, 800, 66,
-                "GitHub のリポジトリを郵便受けにして離れた相手と対戦します。\n先にリポジトリとアクセストークンの用意が必要です。",
+                "GitHub のリポジトリを郵便受けにして離れた相手と対戦します。\nリポジトリは固定なので、アクセストークンと部屋名だけ用意すれば始められます。",
                 18, UiBuilder.TextDim, TextAlignmentOptions.Center);
 
             // ---- 通信設定 ----
-            var onlinePanel = UiBuilder.Panel3(rootRt, "OnlinePanel", 440, 190, 1040, 760, UiBuilder.Panel, true);
+            var onlinePanel = UiBuilder.Panel3(rootRt, "OnlinePanel", 440, 230, 1040, 620, UiBuilder.Panel, true);
             UiBuilder.Text(onlinePanel.transform, "Header", 0, 16, 1040, 44, "通信対戦の設定", 30,
                 UiBuilder.Gold, TextAlignmentOptions.Center, true);
 
-            TMP_InputField owner = null, repo = null, branch = null, token = null, room = null;
-            string[] labels = { "所有者 (ユーザー名)", "リポジトリ名", "ブランチ", "アクセストークン", "部屋名" };
+            // リポジトリは OnlineConfig で固定。入力させず、どこを使うかだけ見せる。
+            var repoInfo = UiBuilder.Text(onlinePanel.transform, "RepoInfo", 28, 66, 984, 48,
+                $"対戦に使うリポジトリ: <b>{OnlineConfig.RepoDisplay}</b>（固定）", 20,
+                UiBuilder.TextDim, TextAlignmentOptions.Left);
+
+            TMP_InputField token = null, room = null;
+            string[] labels = { "アクセストークン", "部屋名" };
             string[] hints =
             {
-                "例: your-github-name", "例: roundtable-matches", "main",
                 "github_pat_... (Contents: Read and write)", "対戦相手と同じ文字列にする"
             };
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 2; i++)
             {
-                float y = 76 + i * 68;
+                float y = 128 + i * 68;
                 UiBuilder.Text(onlinePanel.transform, "Label" + i, 28, y, 250, 56, labels[i], 21,
                     UiBuilder.TextMain, TextAlignmentOptions.Left);
                 var f = UiBuilder.InputField(onlinePanel.transform, "Field" + i, 288, y, 724, 56, hints[i], 21);
                 switch (i)
                 {
-                    case 0: owner = f; break;
-                    case 1: repo = f; break;
-                    case 2: branch = f; break;
-                    case 3: token = f; break;
-                    case 4: room = f; break;
+                    case 0: token = f; break;
+                    case 1: room = f; break;
                 }
             }
 
-            var hostToggle = UiBuilder.CheckBox(onlinePanel.transform, "HostToggle", 288, 424, 724, 48,
+            var hostToggle = UiBuilder.CheckBox(onlinePanel.transform, "HostToggle", 288, 280, 724, 48,
                 "自分がホスト（プレイヤー1）として部屋を作る", 21);
-            var roleHint = UiBuilder.Text(onlinePanel.transform, "RoleHint", 28, 480, 984, 60, "", 19,
+            var roleHint = UiBuilder.Text(onlinePanel.transform, "RoleHint", 28, 336, 984, 60, "", 19,
                 UiBuilder.TextDim, TextAlignmentOptions.TopLeft);
 
-            var test = UiBuilder.TextButton(onlinePanel.transform, "TestButton", 28, 552, 260, 62,
+            var test = UiBuilder.TextButton(onlinePanel.transform, "TestButton", 28, 412, 260, 62,
                 "接続テスト", 22, UiBuilder.PanelSoft, UiBuilder.TextMain);
-            var status = UiBuilder.Text(onlinePanel.transform, "StatusText", 306, 552, 706, 62, "", 19,
+            var status = UiBuilder.Text(onlinePanel.transform, "StatusText", 306, 412, 706, 62, "", 19,
                 UiBuilder.TextDim, TextAlignmentOptions.Left);
 
-            var back = UiBuilder.TextButton(onlinePanel.transform, "BackButton", 28, 640, 260, 72,
+            var back = UiBuilder.TextButton(onlinePanel.transform, "BackButton", 28, 500, 260, 72,
                 "戻る", 24, UiBuilder.PanelSoft, UiBuilder.TextMain);
-            var start = UiBuilder.TextButton(onlinePanel.transform, "StartButton", 690, 640, 322, 72,
+            var start = UiBuilder.TextButton(onlinePanel.transform, "StartButton", 690, 500, 322, 72,
                 "デッキ選択へ", 26, UiBuilder.GoldDim, Color.white);
 
             onlinePanel.gameObject.SetActive(false);
@@ -193,9 +195,7 @@ namespace RoundTable.EditorTools
             screen.HotSeatButton = hotSeat;
             screen.OnlineButton = online;
             screen.OnlinePanel = onlinePanel.gameObject;
-            screen.OwnerField = owner;
-            screen.RepoField = repo;
-            screen.BranchField = branch;
+            screen.RepoInfoText = repoInfo;
             screen.TokenField = token;
             screen.RoomField = room;
             screen.HostToggle = hostToggle;

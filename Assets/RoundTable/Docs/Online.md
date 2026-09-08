@@ -23,16 +23,22 @@ GitHub のリポジトリを**郵便受け**として使います。サーバー
 
 ## 準備（初回だけ）
 
-### 1. リポジトリを作る
+### 1. リポジトリ（固定済み・作業不要）
 
-GitHub で新しいリポジトリを作ります。**Private で構いません。**
+対戦に使う郵便受けは **`miifu555/RoundTableLobby`** に固定してあります。ゲーム側に入力欄はありません。
 
-> ⚠️ **README を入れて「空でない」状態にしてください。**
-> コミットが1つもない空のリポジトリだと、ブランチが存在しないため書き込みに失敗します。
-> リポジトリ作成画面の「Add a README file」にチェックを入れるのが確実です。
+<https://github.com/miifu555/RoundTableLobby>
 
-対戦する2人は**同じ1つのリポジトリ**を使います。オーナーはどちらか片方で構いません
-（相手をコラボレーターに招待するか、後述の fine-grained トークンでアクセスを渡します）。
+このリポジトリ側で満たしておくことは2つだけです（オーナーが最初に1回やれば済みます）。
+
+- **空でないこと。** コミットが1つもないとブランチが存在せず、書き込みに失敗します。README を1つ入れておく
+- **ブランチが `main` であること**
+
+Private のままで構いません。その場合、**一緒に遊ぶ人を Settings → Collaborators で招待**してください。
+招待された側は、自分のアカウントで次のトークンを作れるようになります。
+
+> 別のリポジトリに移したくなったら `Assets/RoundTable/Scripts/Net/OnlineConfig.cs` の
+> `FixedOwner` / `FixedRepo` / `FixedBranch` を書き換えます（全員が同じビルドを使うこと）。
 
 ### 2. アクセストークンを作る（2人ともそれぞれ）
 
@@ -40,13 +46,13 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 
 | 項目 | 設定 |
 |---|---|
-| Repository access | **Only select repositories** → 上で作ったリポジトリだけ |
+| Repository access | **Only select repositories** → `miifu555/RoundTableLobby` だけ |
 | Permissions → Repository permissions → **Contents** | **Read and write** |
 | Expiration | 好きな期間（切れたら作り直す） |
 
 他の権限は不要です。生成された `github_pat_...` をコピーしておきます。
 
-> リポジトリのオーナーでない側は、オーナーからコラボレーター招待を受けてから
+> トークンは**人ごとに別々**です。オーナーでない側は、コラボレーター招待を受けてから
 > 自分のアカウントで同じ手順のトークンを作ります。
 
 ### 3. ゲーム側に入力
@@ -55,12 +61,11 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 
 | 欄 | 入れるもの |
 |---|---|
-| 所有者 | リポジトリの所有者名（`github.com/**ここ**/repo`） |
-| リポジトリ名 | リポジトリ名 |
-| ブランチ | 通常 `main` |
 | アクセストークン | 上で作った `github_pat_...` |
 | 部屋名 | **2人で同じ文字列**にする（例: `room1`） |
 | 自分がホスト | **片方だけ ON**、もう片方は OFF |
+
+所有者・リポジトリ名・ブランチは固定なので入力欄はありません（画面上部に固定先が出ます）。
 
 「接続テスト」で緑の OK が出れば準備完了です。設定はトークンも含めて保存されるので、次回からは入力不要です。
 
@@ -90,6 +95,7 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 | 反応を早くする / API消費を減らす | `OnlineConfig.PollIntervalSeconds`（既定 2秒） |
 | ラウンド間の自動送り時間 | `MatchController` の `Time.time - _roundOverAt > 6f` |
 | 部屋のファイル配置を変える | `OnlineConfig.LocalPath` / `RemotePath` |
+| 使うリポジトリを変える | `OnlineConfig.FixedOwner` / `FixedRepo` / `FixedBranch` |
 
 ### API のレート制限
 
@@ -104,7 +110,7 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
   知人間の利用を前提とした割り切りです。**第三者に配布するビルドには入れないでください。**
 - 必ず **fine-grained トークン**で、**対象リポジトリを1つに限定**してください。
   classic token（全リポジトリにアクセスできる）は使わないこと。
-- 対戦ログには操作しか含まれませんが、リポジトリが Public だと誰でも読めます。Private 推奨です。
+- 対戦ログには操作しか含まれませんが、リポジトリが Public だと誰でも読めます。`RoundTableLobby` は Private 推奨です。
 - トークンを間違えて公開リポジトリに push すると GitHub が自動失効させます。その場合は作り直してください。
 
 ---
@@ -115,8 +121,8 @@ GitHub → Settings → Developer settings → **Personal access tokens → Fine
 |---|---|
 | 接続テストで「トークンが無効です (401)」 | トークンの打ち間違い、または期限切れ。作り直す |
 | 「権限がありません (403)」 | トークンの Contents が Read only になっている。Read and write にする |
-| 「リポジトリが見つかりません (404)」 | 所有者/リポジトリ名の誤り、またはトークンの Repository access にそのリポジトリが入っていない |
-| 「送信に失敗」でブランチ名が出る | ブランチ名が違う（`main` / `master`）。または**リポジトリが空**。README を1つ入れる |
+| 「リポジトリが見つかりません (404)」 | トークンの Repository access に `RoundTableLobby` が入っていない。Private なら**コラボレーター招待を受けているか**も確認 |
+| 「送信に失敗」でブランチ名が出る | `RoundTableLobby` が**空**（コミット0件）。README を1つ入れる。またはブランチが `main` でない |
 | ずっと「相手を待っています…」 | 部屋名が食い違っている / 2人ともホストON（またはOFF）になっている |
 | 盤面が途中でズレた | 別バージョンのビルド同士で対戦した可能性。両者を同じビルドに揃える（プロトコル版が違えば起動時に弾かれます） |
 | 反応が遅い | ポーリング間隔を1秒に縮める。ただしAPI消費は倍になります |

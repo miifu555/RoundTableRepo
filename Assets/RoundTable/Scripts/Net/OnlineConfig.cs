@@ -4,25 +4,36 @@ using UnityEngine;
 namespace RoundTable.Net
 {
     /// <summary>
-    /// GitHub 経由の通信対戦の設定。トークン以外は PlayerPrefs に保存される。
+    /// GitHub 経由の通信対戦の設定。
+    /// 少人数の身内でしか使わないので、**使うリポジトリは固定**にしてある
+    /// （下の Fixed～ を書き換えれば移せる）。プレイヤーごとに違うのはトークン・部屋名・
+    /// ホストかどうかの3つだけで、トークン以外は PlayerPrefs に保存される。
     /// </summary>
     [Serializable]
     public sealed class OnlineConfig
     {
-        const string KeyOwner = "RT.gh.owner";
-        const string KeyRepo = "RT.gh.repo";
-        const string KeyBranch = "RT.gh.branch";
+        // ---- 固定値（対戦に使う郵便受け） ----
+        public const string FixedOwner = "miifu555";
+        public const string FixedRepo = "RoundTableLobby";
+        public const string FixedBranch = "main";
+
         const string KeyToken = "RT.gh.token";
         const string KeyRoom = "RT.gh.room";
         const string KeyHost = "RT.gh.isHost";
 
-        [Tooltip("リポジトリの所有者 (ユーザー名 or organization)。")]
-        public string Owner = "";
-        [Tooltip("リポジトリ名。プライベートで構わない。")]
-        public string Repo = "";
-        [Tooltip("ブランチ名。")]
-        public string Branch = "main";
-        [Tooltip("Personal Access Token (fine-grained / Contents: Read and write)。")]
+        // 旧バージョンが保存していたキー。もう読まないので起動時に掃除する。
+        static readonly string[] ObsoleteKeys = { "RT.gh.owner", "RT.gh.repo", "RT.gh.branch" };
+
+        /// <summary>リポジトリの所有者。固定。</summary>
+        public string Owner => FixedOwner;
+        /// <summary>リポジトリ名。固定。</summary>
+        public string Repo => FixedRepo;
+        /// <summary>ブランチ名。固定。</summary>
+        public string Branch => FixedBranch;
+        /// <summary>画面に出すための "所有者/リポジトリ名"。</summary>
+        public static string RepoDisplay => $"{FixedOwner}/{FixedRepo}";
+
+        [Tooltip("Personal Access Token (fine-grained / Contents: Read and write)。人ごとに違う。")]
         public string Token = "";
         [Tooltip("部屋名。対戦する2人で同じ文字列にする。")]
         public string RoomId = "room1";
@@ -39,8 +50,6 @@ namespace RoundTable.Net
         public string RemotePath => $"rooms/{Sanitize(RoomId)}/p{RemoteRole}.json";
 
         public bool IsComplete =>
-            !string.IsNullOrWhiteSpace(Owner) &&
-            !string.IsNullOrWhiteSpace(Repo) &&
             !string.IsNullOrWhiteSpace(Token) &&
             !string.IsNullOrWhiteSpace(RoomId);
 
@@ -58,9 +67,6 @@ namespace RoundTable.Net
 
         public void Save()
         {
-            PlayerPrefs.SetString(KeyOwner, Owner ?? "");
-            PlayerPrefs.SetString(KeyRepo, Repo ?? "");
-            PlayerPrefs.SetString(KeyBranch, Branch ?? "main");
             PlayerPrefs.SetString(KeyToken, Token ?? "");
             PlayerPrefs.SetString(KeyRoom, RoomId ?? "");
             PlayerPrefs.SetInt(KeyHost, IsHost ? 1 : 0);
@@ -69,12 +75,12 @@ namespace RoundTable.Net
 
         public void Load()
         {
-            Owner = PlayerPrefs.GetString(KeyOwner, Owner);
-            Repo = PlayerPrefs.GetString(KeyRepo, Repo);
-            Branch = PlayerPrefs.GetString(KeyBranch, string.IsNullOrEmpty(Branch) ? "main" : Branch);
             Token = PlayerPrefs.GetString(KeyToken, Token);
             RoomId = PlayerPrefs.GetString(KeyRoom, RoomId);
             IsHost = PlayerPrefs.GetInt(KeyHost, IsHost ? 1 : 0) != 0;
+
+            foreach (var key in ObsoleteKeys)
+                if (PlayerPrefs.HasKey(key)) PlayerPrefs.DeleteKey(key);
         }
     }
 }

@@ -156,7 +156,7 @@ namespace RoundTable.Net
 
                 if (req.responseCode == 401) { done(false, "トークンが無効です (401)"); yield break; }
                 if (req.responseCode == 403) { done(false, "権限がありません (403)。Contents: Read and write を許可してください"); yield break; }
-                if (req.responseCode == 404) { done(false, "リポジトリが見つかりません (404)。所有者/リポジトリ名、またはトークンのリポジトリ許可を確認してください"); yield break; }
+                if (req.responseCode == 404) { done(false, $"リポジトリ {OnlineConfig.RepoDisplay} が見つかりません (404)。トークンの Repository access にこのリポジトリが入っているか、Private ならコラボレーター招待を受けているか確認してください"); yield break; }
                 if (req.result != UnityWebRequest.Result.Success) { done(false, Describe(req)); yield break; }
 
                 done(true, "接続OK");
