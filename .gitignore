@@ -109,3 +109,11 @@ InitTestScene*.unity*
 # 作成/削除は Unity の「Round Table / 通信トークンを設定」から。
 /[Aa]ssets/RoundTable/Resources/RoundTableToken.txt
 /[Aa]ssets/RoundTable/Resources/RoundTableToken.txt.meta
+
+# Unity が自動生成する作業ファイル (クラッシュ復旧シーン・テスト実行情報・ビルド時の link.xml)
+/[Aa]ssets/_[Rr]ecovery/
+/[Aa]ssets/_[Rr]ecovery.meta
+/[Aa]ssets/packages-merged-link/
+/[Aa]ssets/packages-merged-link.meta
+/[Aa]ssets/[Rr]esources/PerformanceTestRun*.json
+/[Aa]ssets/[Rr]esources/PerformanceTestRun*.json.meta

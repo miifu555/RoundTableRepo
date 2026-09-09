@@ -46,8 +46,16 @@ namespace RoundTable.Net
             req.SetRequestHeader("Authorization", "Bearer " + _cfg.EffectiveToken);
             req.SetRequestHeader("Accept", "application/vnd.github+json");
             req.SetRequestHeader("X-GitHub-Api-Version", "2022-11-28");
+
+            // WebGL ではブラウザの CORS 制約を受ける。
+            // Cache-Control は GitHub の Access-Control-Allow-Headers に無いため、
+            // 付けるとプリフライトで全リクエストが弾かれる
+            // (キャッシュ回避は ContentsUrl のクエリ文字列で行っている)。
+            // User-Agent はブラウザが自動で付けるので、設定しても警告が出るだけ。
+#if !UNITY_WEBGL || UNITY_EDITOR
             req.SetRequestHeader("User-Agent", "RoundTable-Unity");
             req.SetRequestHeader("Cache-Control", "no-cache");
+#endif
             req.timeout = TimeoutSeconds;
         }
 
@@ -159,6 +167,18 @@ namespace RoundTable.Net
                 if (req.responseCode == 404) { done(false, $"リポジトリ {OnlineConfig.RepoDisplay} が見つかりません (404)。トークンの Repository access にこのリポジトリが入っているか、Private ならコラボレーター招待を受けているか確認してください"); yield break; }
                 if (req.result != UnityWebRequest.Result.Success) { done(false, Describe(req)); yield break; }
 
+                // GET が通っても書き込み権限が無いと、対戦開始の PUT で 403 になる。
+                // リポジトリ情報の permissions.push でその場で判別する。
+                RepoResponse repo = null;
+                try { repo = JsonUtility.FromJson<RepoResponse>(req.downloadHandler.text); }
+                catch { /* 解析できなければ権限チェックは諦めて続行する */ }
+
+                if (repo != null && repo.permissions != null && !repo.permissions.push)
+                {
+                    done(false, $"{OnlineConfig.RepoDisplay} への書き込み権限がありません。トークンの Repository permissions で Contents を Read and write にしてください");
+                    yield break;
+                }
+
                 done(true, "接続OK");
             }
         }
@@ -189,6 +209,20 @@ namespace RoundTable.Net
                 }
             }
             return sb.Append('"').ToString();
+        }
+
+        [Serializable]
+        class RepoResponse
+        {
+            public PermissionSet permissions;
+
+            [Serializable]
+            public class PermissionSet
+            {
+                public bool admin;
+                public bool push;
+                public bool pull;
+            }
         }
 
         [Serializable]
