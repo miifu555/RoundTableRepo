@@ -48,7 +48,7 @@ namespace RoundTable.Net
         public bool IsHost = true;
 
         [Tooltip("相手のファイルを見に行く間隔(秒)。短くすると反応が早いがAPI消費が増える。")]
-        public float PollIntervalSeconds = 2f;
+        public float PollIntervalSeconds = 4f;
 
         static string _builtInToken;
         static bool _builtInLoaded;

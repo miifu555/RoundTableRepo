@@ -117,3 +117,6 @@ InitTestScene*.unity*
 /[Aa]ssets/packages-merged-link.meta
 /[Aa]ssets/[Rr]esources/PerformanceTestRun*.json
 /[Aa]ssets/[Rr]esources/PerformanceTestRun*.json.meta
+
+# 配布用に手元へ退避した通信トークン (Assets の外なのでビルドには含まれない)
+/RoundTableToken.local.txt
