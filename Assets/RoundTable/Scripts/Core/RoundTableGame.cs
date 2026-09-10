@@ -178,6 +178,14 @@ namespace RoundTable.Core
             // 4. ドロー
             if (p.Deck.DrawStyle == DrawStyle.Shuffle)
             {
+                // 仕様: 「番の初めに持っている手札ごと山をシャッフルして4枚引く」
+                // 手札は毎ターン作り直しになるので、抱え込みができない。
+                if (p.Hand.Count > 0)
+                {
+                    AddLog($"  手札 {p.Hand.Count} 枚を山札に戻した");
+                    p.DrawPile.AddRange(p.Hand);
+                    p.Hand.Clear();
+                }
                 Shuffle(p.DrawPile);
                 AddLog("  山札をシャッフル");
                 DrawCards(p, ShuffleTypeDrawCount);
@@ -414,16 +422,17 @@ namespace RoundTable.Core
             try
             {
                 var opp = Other(self);
+                bool byAttackCard = source != null && source.Kind == CardKind.Attack;
                 switch (e.Kind)
                 {
                     case EffectKind.Damage:
-                        DealDamage(opp, self, e.Amount, source != null && source.Kind == CardKind.Attack);
+                        DealDamage(opp, self, e.Amount, byAttackCard);
                         break;
 
                     case EffectKind.DamageDice:
                     {
                         int v = RollDice(self, e.DiceSides);
-                        DealDamage(opp, self, v, source != null && source.Kind == CardKind.Attack);
+                        DealDamage(opp, self, v, byAttackCard);
                         break;
                     }
 
@@ -437,13 +446,13 @@ namespace RoundTable.Core
                     }
 
                     case EffectKind.DrawCards:
-                        DrawCards(self, e.Amount);
+                        DrawCards(self, e.Amount, byAttackCard);
                         break;
 
                     case EffectKind.DrawCardsDice:
                     {
                         int v = Math.Max(0, RollDice(self, e.DiceSides) + e.Modifier);
-                        DrawCards(self, v);
+                        DrawCards(self, v, byAttackCard);
                         break;
                     }
 
@@ -566,7 +575,12 @@ namespace RoundTable.Core
             if (byCard) FireTriggers(target, TriggerKind.OnDamagedByCard, null);
         }
 
-        void DrawCards(PlayerState p, int count)
+        /// <param name="fromAttackCard">
+        /// 攻撃カードの効果によるドローか。ざきの《便乗》は
+        /// 「相手が攻撃カードの効果でドローしたとき」だけ誘発するので、
+        /// 番の始まりの通常ドローやフィールドの誘発ドローでは反応しない。
+        /// </param>
+        void DrawCards(PlayerState p, int count, bool fromAttackCard = false)
         {
             if (count <= 0) return;
             if (Phase == GamePhase.RoundOver || Phase == GamePhase.MatchOver) return;
@@ -586,8 +600,8 @@ namespace RoundTable.Core
 
             AddLog($"  [{p.DisplayName}] {drawn} 枚ドロー (手札 {p.Hand.Count} / 山札 {p.DrawPile.Count})");
 
-            // 「相手がカードをドローしたとき、自分も同じ枚数引ける」
-            FireOpponentDrawTriggers(Other(p), drawn);
+            // 「相手が攻撃カードの効果でドローしたとき、自分も同じ枚数引ける」
+            if (fromAttackCard) FireOpponentDrawTriggers(Other(p), drawn);
         }
 
         void FireOpponentDrawTriggers(PlayerState watcher, int drawn)

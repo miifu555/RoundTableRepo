@@ -90,7 +90,7 @@ namespace RoundTable.EditorTools
             Atk("a1", "塵も積もれば", 2, 3, "相手の気力を3削る", E(EffectKind.Damage, 3));
             Atk("a2", "片付けの時間", 3, 2, "相手のフィールドを一つトラッシュする", E(EffectKind.DestroyOpponentField, 1));
             Atk("a3", "情報収集", 3, 4, "2枚カードを引く", E(EffectKind.DrawCards, 2));
-            Atk("a4", "連休の始まり", 7, 1, "このターンのあと、エクストラターンを得る", E(EffectKind.ExtraTurn));
+            Atk("a4", "爆睡", 7, 1, "このターンのあと、エクストラターンを得る", E(EffectKind.ExtraTurn));
             Fld("f1", "一息つく", 4, 3, "番の終わり、気力を2回復する", TriggerKind.OnOwnTurnEnd, E(EffectKind.Heal, 2));
             Fld("f2", "鉄壁の言い訳", 4, 2, "削られる気力を-1する", TriggerKind.None, E(EffectKind.PassiveDamageReduction, 1));
 
@@ -101,16 +101,16 @@ namespace RoundTable.EditorTools
             Atk("a3", "山勘", 2, 2, "2枚カードを引く", E(EffectKind.DrawCards, 2));
             Atk("a4", "無差別掃除", 1, 2, "4面サイコロで出た目-2個相手のフィールドを破壊する", E(EffectKind.DestroyOpponentFieldDice, diceSides: 4, modifier: -2));
             Atk("a5", "気まぐれ探索", 1, 2, "4面サイコロで出た目-2枚カードを引く", E(EffectKind.DrawCardsDice, diceSides: 4, modifier: -2));
-            Fld("f1", "勝負師の勘", 5, 2, "ダイスを振った時、その出目は+1になる", TriggerKind.None, E(EffectKind.PassiveDiceBonus, 1));
+            Fld("f1", "勝負師の勘", 4, 2, "ダイスを振った時、その出目は+1になる", TriggerKind.None, E(EffectKind.PassiveDiceBonus, 1));
 
             // ===== ざき　コントロール(盤面妨害) / ドロータイプ =====
             Deck("zaki", "ざき", "コントロール(盤面妨害)", DrawStyle.Draw);
             Atk("a1", "小言", 1, 4, "相手の気力を2削る", E(EffectKind.Damage, 2));
             Atk("a2", "下調べ", 1, 2, "2枚カードを引く", E(EffectKind.DrawCards, 2));
             Atk("a3", "計画的撤去", 2, 2, "相手のフィールドを一つ破壊する", E(EffectKind.DestroyOpponentField, 1));
-            Fld("f1", "意趣返し", 2, 3, "気力を削られた時、相手の気力も2削る", TriggerKind.OnDamaged, E(EffectKind.Damage, 2));
+            Fld("f1", "意趣返し", 1, 3, "気力を削られた時、相手の気力も2削る", TriggerKind.OnDamaged, E(EffectKind.Damage, 2));
             Fld("f2", "連帯責任", 3, 2, "気力を削られた時、相手のフィールドを一つ破壊する", TriggerKind.OnDamaged, E(EffectKind.DestroyOpponentField, 1));
-            Fld("f3", "便乗", 5, 2, "相手がカードをドローしたとき、自分も同じ枚数引ける", TriggerKind.OnOpponentDraw, E(EffectKind.DrawSameAsOpponent));
+            Fld("f3", "便乗", 5, 2, "相手が攻撃カードの効果でドローしたとき、自分も同じ枚数引ける", TriggerKind.OnOpponentDraw, E(EffectKind.DrawSameAsOpponent));
 
             // ===== 奥野　LO / シャッフルタイプ =====
             Deck("okuno", "奥野", "LO", DrawStyle.Shuffle);
@@ -131,11 +131,11 @@ namespace RoundTable.EditorTools
 
             // ===== しょー　アグロ(連撃) / シャッフルタイプ =====
             Deck("show", "しょー", "アグロ(連撃)", DrawStyle.Shuffle);
-            Atk("a1", "刻む拳", 2, 5, "相手の気力を2削る", E(EffectKind.Damage, 2));
+            Atk("a1", "古武術", 2, 5, "相手の気力を2削る", E(EffectKind.Damage, 2));
             Atk("a2", "呼吸を整える", 2, 3, "カードを2枚引く", E(EffectKind.DrawCards, 2));
             Atk("a3", "足払い", 1, 2, "相手のフィールドを1個破壊する", E(EffectKind.DestroyOpponentField, 1));
             Fld("f1", "早起き", 3, 1, "自分のターン開始時、カードを1枚引く", TriggerKind.OnOwnTurnStart, E(EffectKind.DrawCards, 1));
-            Fld("f2", "古武術", 2, 4, "自分のターン開始時、相手の気力を2削る", TriggerKind.OnOwnTurnStart, E(EffectKind.Damage, 2));
+            Fld("f2", "先制攻撃", 2, 4, "自分のターン開始時、相手の気力を2削る", TriggerKind.OnOwnTurnStart, E(EffectKind.Damage, 2));
 
             // ===== こうの　アグロ(除去) / シャッフルタイプ =====
             Deck("kono", "こうの", "アグロ(除去)", DrawStyle.Shuffle);
@@ -166,7 +166,7 @@ namespace RoundTable.EditorTools
             Atk("a2", "小突き", 2, 3, "相手の気力を2削る", E(EffectKind.Damage, 2));
             Atk("a3", "様子見", 2, 3, "1枚カードを引く", E(EffectKind.DrawCards, 1));
             Atk("a4", "整地", 3, 3, "相手のフィールドを2つ破壊する", E(EffectKind.DestroyOpponentField, 2));
-            Fld("f1", "置き土産", 1, 3, "このフィールドが破壊されたとき、互いにカードを2枚引く", TriggerKind.OnThisDestroyed, E(EffectKind.BothPlayersDraw, 2));
+            Fld("f1", "おちょくる", 1, 3, "このフィールドが破壊されたとき、互いにカードを2枚引く", TriggerKind.OnThisDestroyed, E(EffectKind.BothPlayersDraw, 2));
 
             // ===== 没ステ　アグロ(設置) / シャッフルタイプ =====
             Deck("botsu", "没ステ", "アグロ(設置)", DrawStyle.Shuffle);
