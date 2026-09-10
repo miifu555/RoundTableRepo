@@ -80,17 +80,24 @@ namespace RoundTable.UI
                 _cells.Add(cell);
             }
 
-            if (ViewDeckButton != null) ViewDeckButton.onClick.AddListener(ShowDeckList);
-            if (StartButton != null) StartButton.onClick.AddListener(StartMatch);
-            if (BackButton != null) BackButton.onClick.AddListener(SceneFlow.GoTitle);
-            if (DeckListCloseButton != null) DeckListCloseButton.onClick.AddListener(() => DeckListOverlay.SetActive(false));
+            if (ViewDeckButton != null) ViewDeckButton.onClick.AddListener(() => { Click(); ShowDeckList(); });
+            if (StartButton != null) StartButton.onClick.AddListener(() => { Click(); StartMatch(); });
+            if (BackButton != null) BackButton.onClick.AddListener(() => { Click(); SceneFlow.GoTitle(); });
+            if (DeckListCloseButton != null) DeckListCloseButton.onClick.AddListener(() => { Click(); DeckListOverlay.SetActive(false); });
+
+            // タイトルと同じ曲なので、画面が変わっても途切れずに続く
+            AudioManager.Instance.PlayTitleBgm();
             if (DeckListOverlay != null) DeckListOverlay.SetActive(false);
 
             Refresh();
         }
 
+        static void Click() => AudioManager.Instance.PlayButton();
+
         void OnCellClicked(DeckCell cell)
         {
+            Click();
+
             if (IsOnline)
             {
                 // 通信対戦では自分のデッキだけ選ぶ (相手のデッキは相手が選ぶ)

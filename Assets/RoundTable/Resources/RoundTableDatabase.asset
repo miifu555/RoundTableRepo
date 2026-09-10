@@ -29,5 +29,13 @@ MonoBehaviour:
   TitleBackground: {fileID: 0}
   DaoOn: {fileID: 0}
   DaoOff: {fileID: 0}
+  BgmTitle: {fileID: 8300000, guid: 00e972f20825d5c4e94822e7a35d8a14, type: 3}
+  BgmBattle: {fileID: 8300000, guid: 26aad10b0684e224985cfe02ef978d8d, type: 3}
+  SeButton: {fileID: 8300000, guid: 1e5d775766307134099bdcbe8fa1c80b, type: 3}
+  SeAttackCard: {fileID: 8300000, guid: 1799f857df638dc41b5f552b944430e2, type: 3}
+  SeFieldCard: {fileID: 8300000, guid: 163ca6feec4f3e244bbdfb85a6ab2fd8, type: 3}
+  SeEndTurn: {fileID: 8300000, guid: 1cdf23b953cf5ff45b4624d976e92124, type: 3}
+  SeWin: {fileID: 8300000, guid: b30fd22978b78ef408ddf4ae047cd2f3, type: 3}
+  SeLose: {fileID: 8300000, guid: 2f8ce2aeb1b691d4181fab205cd75e94, type: 3}
   Font: {fileID: 11400000, guid: 026df6568a42045439ef34913f798f6f, type: 2}
   FontBold: {fileID: 11400000, guid: 7106e4f34c7264842b2223224b337d80, type: 2}

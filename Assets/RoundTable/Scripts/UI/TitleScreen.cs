@@ -98,6 +98,8 @@ namespace RoundTable.UI
             ShowOnlinePanel(false);
             UpdateRoleHint();
             SetStatus("");
+
+            AudioManager.Instance.PlayTitleBgm();
         }
 
         /// <summary>固定値を表示するだけの、触れない入力欄にする。</summary>
@@ -113,7 +115,11 @@ namespace RoundTable.UI
         {
             if (b == null) return;
             b.onClick.RemoveAllListeners();
-            b.onClick.AddListener(action);
+            b.onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlayButton();
+                action();
+            });
         }
 
         void ShowOnlinePanel(bool show)

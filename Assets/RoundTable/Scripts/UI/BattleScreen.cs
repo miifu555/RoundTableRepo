@@ -87,11 +87,22 @@ namespace RoundTable.UI
             if (EndTurnButton != null) EndTurnButton.onClick.AddListener(() => { Match.EndTurn(); _dirty = true; });
             if (ConfirmButton != null) ConfirmButton.onClick.AddListener(() => { Match.ConfirmChoice(); _dirty = true; });
             if (SurrenderButton != null) SurrenderButton.onClick.AddListener(() => { Match.Surrender(); _dirty = true; });
-            if (NextRoundButton != null) NextRoundButton.onClick.AddListener(() => { Match.ProceedToNextRound(); _dirty = true; });
-            if (ExitButton != null) ExitButton.onClick.AddListener(SceneFlow.GoTitle);
+            if (NextRoundButton != null) NextRoundButton.onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlayButton();
+                Match.ProceedToNextRound();
+                _dirty = true;
+            });
+            if (ExitButton != null) ExitButton.onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlayButton();
+                SceneFlow.GoTitle();
+            });
             if (StatusCancelButton != null) StatusCancelButton.onClick.AddListener(SceneFlow.GoTitle);
 
             if (Match != null) Match.OnChanged += () => _dirty = true;
+
+            AudioManager.Instance.PlayBattleBgm();
             _dirty = true;
         }
 

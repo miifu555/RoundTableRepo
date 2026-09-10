@@ -29,6 +29,26 @@ namespace RoundTable.Data
         [Tooltip("^^ (だお) 未獲得。96 x 96 px。")]
         public Sprite DaoOff;
 
+        [Header("BGM")]
+        [Tooltip("タイトルとデッキ選択で流す曲。")]
+        public AudioClip BgmTitle;
+        [Tooltip("対戦中に流す曲。")]
+        public AudioClip BgmBattle;
+
+        [Header("効果音")]
+        [Tooltip("タイトル / デッキ選択のボタン。")]
+        public AudioClip SeButton;
+        [Tooltip("攻撃カードを使ったとき。")]
+        public AudioClip SeAttackCard;
+        [Tooltip("フィールドカードを使ったとき。")]
+        public AudioClip SeFieldCard;
+        [Tooltip("ターン終了時。")]
+        public AudioClip SeEndTurn;
+        [Tooltip("勝利時。")]
+        public AudioClip SeWin;
+        [Tooltip("敗北時。")]
+        public AudioClip SeLose;
+
         [Header("フォント")]
         public TMP_FontAsset Font;
         public TMP_FontAsset FontBold;

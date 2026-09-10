@@ -174,7 +174,11 @@ namespace RoundTable.App
                 case ActionCode.PlayCard:
                 {
                     var c = Game.FindByUid(uid);
-                    return c != null && Game.PlayCard(c);
+                    if (c == null) return false;
+                    var playedKind = c.Kind;
+                    if (!Game.PlayCard(c)) return false;
+                    AudioManager.Instance.PlayCard(playedKind);
+                    return true;
                 }
                 case ActionCode.ChooseField:
                 {
@@ -194,6 +198,7 @@ namespace RoundTable.App
                 case ActionCode.EndTurn:
                     if (Game.Phase != GamePhase.Play) return false;
                     Game.EndTurn();
+                    AudioManager.Instance.PlayEndTurn();
                     return true;
 
                 case ActionCode.Surrender:
@@ -379,8 +384,28 @@ namespace RoundTable.App
             }
         }
 
+        GamePhase _lastPhase = GamePhase.NotStarted;
+
+        /// <summary>決着したら1回だけ勝敗の音を鳴らす。</summary>
+        void UpdateResultSound()
+        {
+            if (Game == null) return;
+            if (Game.Phase == _lastPhase) return;
+
+            var previous = _lastPhase;
+            _lastPhase = Game.Phase;
+
+            if (Game.Phase != GamePhase.MatchOver || previous == GamePhase.MatchOver) return;
+
+            bool win = !IsFixedSeat            // ホットシートは誰かが勝ったので勝利音
+                       || Game.MatchWinnerIndex == GameSession.LocalPlayerIndex;
+            AudioManager.Instance.PlayResult(win);
+        }
+
         void Update()
         {
+            UpdateResultSound();
+
             // 相手の操作は「適用できるようになった順」に流し込む
             while (_remoteQueue.Count > 0)
             {
