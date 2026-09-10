@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using RoundTable.App;
 using RoundTable.Data;
 using RoundTable.Net;
@@ -225,9 +226,98 @@ namespace RoundTable.EditorTools
             screen.OnlineBackButton = back;
             screen.StatusText = status;
 
+            BuildRulesMenu(rootRt);
             BuildDebugMenu(rootRt);
 
             SaveScene(scene, SceneFlow.Title);
+        }
+
+        /// <summary>
+        /// あそびかたを表示するだけのパネル。入口はタイトル左下の常時表示ボタンで、
+        /// デバッグメニューと違って誰でも開ける (ゲートなし)。
+        /// </summary>
+        static void BuildRulesMenu(RectTransform parent)
+        {
+            var screen = parent.gameObject.AddComponent<RulesScreen>();
+
+            var open = UiBuilder.TextButton(parent, "RulesOpenButton", 20, RefH - 52, 120, 36,
+                "ルール", 18, new Color(0.16f, 0.15f, 0.19f, 0.9f), UiBuilder.TextDim);
+
+            var overlay = UiBuilder.Node("RulesOverlay", parent);
+            UiBuilder.Place(overlay, 0, 0, RefW, RefH);
+
+            var shade = UiBuilder.Flat(overlay, "Shade", 0, 0, RefW, RefH, new Color(0.02f, 0.02f, 0.03f, 0.97f));
+            UiBuilder.Stretch(shade.rectTransform);
+            shade.raycastTarget = true; // 後ろのボタンを押せなくする
+
+            var panel = UiBuilder.Panel3(overlay, "RulesPanel", 360, 60, 1200, 960,
+                new Color(0.145f, 0.133f, 0.176f, 1f), true);
+            UiBuilder.Text(panel.transform, "Header", 0, 18, 1200, 44, "円卓のあそびかた", 30,
+                UiBuilder.Gold, TextAlignmentOptions.Center, true);
+
+            var close = UiBuilder.TextButton(panel.transform, "CloseButton", 1200 - 148, 16, 128, 44,
+                "閉じる", 20, UiBuilder.PanelSoft, UiBuilder.TextMain);
+
+            UiBuilder.ScrollText(panel.transform, "Body", 28, 80, 1144, 858, BuildRulesText(), 21, UiBuilder.TextMain);
+
+            overlay.gameObject.SetActive(false);
+
+            screen.OpenButton = open;
+            screen.Panel = overlay.gameObject;
+            screen.CloseButton = close;
+        }
+
+        /// <summary>
+        /// ルール本文。Notion の仕様書 (README の「仕様書どおりに実装した部分」に対応) を
+        /// プレイヤー向けに噛み砕いたもの。仕様やハウスルールを変えたらここも直すこと。
+        /// </summary>
+        static string BuildRulesText()
+        {
+            const string headColor = "D8B460"; // UiBuilder.Gold と同じ色 (#D8B460)
+            var sb = new StringBuilder();
+
+            void Section(string title, params string[] lines)
+            {
+                sb.Append("<b><color=#").Append(headColor).Append(">■ ").Append(title).Append("</color></b>").AppendLine();
+                foreach (var line in lines) sb.AppendLine(line);
+                sb.AppendLine();
+            }
+
+            Section("勝利条件",
+                "相手の気力を削るなどして ^^ (だお) を獲得する。",
+                "^^ を3つ先に集めたプレイヤーの勝ち。1回の対戦(マッチ)は複数ラウンドからなり、",
+                "^^ が貯まるまでラウンドを何度も繰り返す。");
+
+            Section("気力とカード",
+                "気力は10からスタート。カードを使うと、そのコスト分だけ気力を消費する。",
+                "自分のターンが来ると、気力は10まで全回復する。",
+                "コストを払いすぎて気力が0を下回ると自爆し、相手に ^^ が1つ入る。");
+
+            Section("カードの種類",
+                "攻撃カード：使うとすぐ効果が発動し、そのあとトラッシュへ送られる。",
+                "フィールドカード：場に置いておくカード。同時に何枚でも置け、",
+                "誘発条件を満たすたびに効果が発動する。");
+
+            Section("ドロー",
+                "ドロータイプ：自分のターンの頭に1枚引く。",
+                "シャッフルタイプ：自分のターンの頭に、持っている手札ごと山に戻してシャッフルし直し、",
+                "4枚引く（手札を貯め込めない）。ラウンド開始時（自分の番が来る前）にも同じシャッフル",
+                "ドローを1回済ませてあるので、後攻でも手札0枚で相手のターンを待たされることはない。");
+
+            Section("トラッシュ",
+                "使ったカード・破壊されたフィールド・捨てた手札は、いったん一時的なトラッシュに置かれる。",
+                "次に自分のターンが回ってきて引く前に、使った順番で山の一番下へ戻る。",
+                "山からそのまま完全に消える捨て札は別にあり、山札を削る専用の効果でしか起きない。");
+
+            Section("^^ (だお) の獲得",
+                "相手の気力を削り切ったとき、または相手が自爆したときに ^^ を1つ獲得する。",
+                "^^ を3つ集めたプレイヤーがそのマッチの勝者。");
+
+            Section("そのほかのルール",
+                "1ラウンドが60手番を超えると、そのラウンドは引き分けとなり両者に ^^ が1つずつ入る。",
+                "最初のラウンドの先攻はランダムで決まり、以降は毎ラウンド先攻・後攻が入れ替わる。");
+
+            return sb.ToString().TrimEnd();
         }
 
         /// <summary>

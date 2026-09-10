@@ -285,5 +285,49 @@ namespace RoundTable.EditorTools
             toggle.isOn = true;
             return toggle;
         }
+
+        /// <summary>
+        /// 縦スクロールする長文表示。テキストは折り返しで高さが伸び、
+        /// ContentSizeFitter がその高さを ScrollRect の Content に反映する
+        /// （実行時にテキストを差し替えても、レイアウトの再計算だけで追従する）。
+        /// </summary>
+        public static (ScrollRect scroll, TextMeshProUGUI text) ScrollText(
+            Transform parent, string name, float x, float y, float w, float h,
+            string text, float fontSize, Color color)
+        {
+            var root = Node(name, parent);
+            Place(root, x, y, w, h);
+
+            var scroll = root.gameObject.AddComponent<ScrollRect>();
+            scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 28f;
+
+            var viewport = Node("Viewport", root);
+            Stretch(viewport);
+            var vpImg = viewport.gameObject.AddComponent<Image>();
+            vpImg.color = new Color(1f, 1f, 1f, 0.001f); // Mask に画像が要るだけ。見た目には出ない
+            vpImg.raycastTarget = true;
+            viewport.gameObject.AddComponent<RectMask2D>();
+
+            var t = Text(viewport, "Text", 0, 0, w, 10f, text, fontSize, color, TextAlignmentOptions.TopLeft);
+            var trt = t.rectTransform;
+            trt.anchorMin = new Vector2(0f, 1f);
+            trt.anchorMax = new Vector2(1f, 1f);
+            trt.pivot = new Vector2(0.5f, 1f);
+            trt.anchoredPosition = Vector2.zero;
+            trt.sizeDelta = new Vector2(0f, 10f); // 高さは ContentSizeFitter が上書きする
+            t.enableWordWrapping = true;
+
+            var fitter = t.gameObject.AddComponent<ContentSizeFitter>();
+            fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            scroll.viewport = viewport;
+            scroll.content = trt;
+
+            return (scroll, t);
+        }
     }
 }
