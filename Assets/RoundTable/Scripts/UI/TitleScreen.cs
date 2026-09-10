@@ -13,7 +13,14 @@ namespace RoundTable.UI
         [Header("モード選択")]
         public GameObject ModePanel;
         public Button HotSeatButton;
+        public Button VsAiButton;
         public Button OnlineButton;
+
+        [Header("CPUの強さ")]
+        [Tooltip("よわい / ふつう / つよい の3つ。順番どおりに割り当てること。")]
+        public Button[] DifficultyButtons = new Button[3];
+        public Color DifficultySelected = new Color(0.847f, 0.706f, 0.376f, 1f);
+        public Color DifficultyNormal = new Color(0.196f, 0.180f, 0.235f, 0.94f);
 
         [Header("通信設定")]
         public GameObject OnlinePanel;
@@ -73,7 +80,15 @@ namespace RoundTable.UI
             if (HostToggle != null) HostToggle.isOn = _cfg.IsHost;
 
             Wire(HotSeatButton, StartHotSeat);
+            Wire(VsAiButton, StartVsAi);
             Wire(OnlineButton, () => ShowOnlinePanel(true));
+
+            for (int i = 0; i < DifficultyButtons.Length; i++)
+            {
+                int level = i;
+                Wire(DifficultyButtons[i], () => SetDifficulty((AiDifficulty)level));
+            }
+            RefreshDifficultyButtons();
             Wire(OnlineBackButton, () => ShowOnlinePanel(false));
             Wire(TestButton, () => { if (!_testing) StartCoroutine(TestConnection()); });
             Wire(OnlineStartButton, StartOnline);
@@ -134,6 +149,34 @@ namespace RoundTable.UI
             GameSession.Mode = MatchMode.HotSeat;
             GameSession.LocalPlayerIndex = 0;
             SceneFlow.GoDeckSelect();
+        }
+
+        void StartVsAi()
+        {
+            GameSession.Mode = MatchMode.VsAi;
+            GameSession.LocalPlayerIndex = 0; // 自分は常にプレイヤー1、CPUがプレイヤー2
+            SceneFlow.GoDeckSelect();
+        }
+
+        void SetDifficulty(AiDifficulty level)
+        {
+            GameSession.AiLevel = level;
+            RefreshDifficultyButtons();
+        }
+
+        void RefreshDifficultyButtons()
+        {
+            for (int i = 0; i < DifficultyButtons.Length; i++)
+            {
+                var b = DifficultyButtons[i];
+                if (b == null) continue;
+                bool selected = (int)GameSession.AiLevel == i;
+                var img = b.targetGraphic as UnityEngine.UI.Image;
+                if (img != null) img.color = selected ? DifficultySelected : DifficultyNormal;
+
+                var label = b.GetComponentInChildren<TMP_Text>();
+                if (label != null) label.color = selected ? Color.black : new Color(0.945f, 0.933f, 0.905f, 1f);
+            }
         }
 
         void PullFields()

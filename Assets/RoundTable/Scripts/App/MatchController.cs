@@ -26,12 +26,19 @@ namespace RoundTable.App
         public MatchStatus Status { get; private set; } = MatchStatus.Connecting;
         public string StatusMessage { get; private set; } = "";
         public bool IsOnline => GameSession.Mode == MatchMode.Online;
+        public bool IsVsAi => GameSession.Mode == MatchMode.VsAi;
 
-        /// <summary>画面下側に表示するプレイヤー。ホットシートでは手番側、通信では自分。</summary>
+        /// <summary>席が固定されるモードか。true なら画面下は常に自分、相手の手札は伏せる。</summary>
+        public bool IsFixedSeat => IsOnline || IsVsAi;
+
+        /// <summary>CPUが操作するプレイヤー。</summary>
+        public int AiPlayerIndex => 1 - GameSession.LocalPlayerIndex;
+
+        /// <summary>画面下側に表示するプレイヤー。ホットシートでは手番側、それ以外は自分。</summary>
         public int BottomPlayerIndex =>
-            IsOnline ? GameSession.LocalPlayerIndex : (Game != null ? Game.CurrentIndex : 0);
+            IsFixedSeat ? GameSession.LocalPlayerIndex : (Game != null ? Game.CurrentIndex : 0);
 
-        public int LocalPlayerIndex => IsOnline ? GameSession.LocalPlayerIndex : (Game != null ? Game.CurrentIndex : 0);
+        public int LocalPlayerIndex => IsFixedSeat ? GameSession.LocalPlayerIndex : (Game != null ? Game.CurrentIndex : 0);
 
         /// <summary>いま自分が操作してよいか。</summary>
         public bool CanAct
@@ -40,7 +47,7 @@ namespace RoundTable.App
             {
                 if (Game == null || Status != MatchStatus.Playing) return false;
                 if (Game.Phase != GamePhase.Play && Game.Phase != GamePhase.AwaitingChoice) return false;
-                return !IsOnline || Game.CurrentIndex == GameSession.LocalPlayerIndex;
+                return !IsFixedSeat || Game.CurrentIndex == GameSession.LocalPlayerIndex;
             }
         }
 
@@ -56,6 +63,13 @@ namespace RoundTable.App
         bool _pushPending;
         bool _pushing;
         float _roundOverAt = -1f;
+
+        // ---- CPU対戦用 ----
+        [Tooltip("CPUが1手打つまでの待ち時間(秒)。考えているように見せるためのもの。")]
+        public float AiThinkSeconds = 0.6f;
+        System.Random _aiRng;
+        float _aiNextActAt;
+        bool _aiWasTurn;
 
         void Start()
         {
@@ -387,6 +401,46 @@ namespace RoundTable.App
             {
                 _roundOverAt = -1f;
             }
+
+            UpdateAi();
+        }
+
+        // =====================================================================
+        // CPU対戦
+        // =====================================================================
+
+        void UpdateAi()
+        {
+            if (!IsVsAi || Game == null || Status != MatchStatus.Playing) return;
+
+            bool aiTurn = Game.CurrentIndex == AiPlayerIndex
+                          && (Game.Phase == GamePhase.Play || Game.Phase == GamePhase.AwaitingChoice);
+
+            if (!aiTurn) { _aiWasTurn = false; return; }
+
+            // 手番が回ってきた直後は1拍おく
+            if (!_aiWasTurn)
+            {
+                _aiWasTurn = true;
+                _aiNextActAt = Time.time + AiThinkSeconds;
+                return;
+            }
+
+            if (Time.time < _aiNextActAt) return;
+            _aiNextActAt = Time.time + AiThinkSeconds;
+
+            if (_aiRng == null) _aiRng = new System.Random(GameSession.Seed ^ 0x5f3759df);
+
+            string code = SimpleAi.ChooseAction(Game, _aiRng, GameSession.AiLevel)
+                          ?? ActionCode.EndTurn.ToString();
+
+            if (!ApplyAction(code, AiPlayerIndex))
+            {
+                // 念のため: 適用できない手が返ってきたらターンを終える
+                if (Game.Phase == GamePhase.Play) Game.EndTurn();
+                else if (Game.Phase == GamePhase.AwaitingChoice) Game.ConfirmChoice();
+            }
+            Changed();
         }
 
         static PlayerFile SafeParse(string json)

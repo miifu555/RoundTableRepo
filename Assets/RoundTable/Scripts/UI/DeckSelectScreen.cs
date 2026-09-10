@@ -37,6 +37,20 @@ namespace RoundTable.UI
         bool _pickingOpponent;
 
         bool IsOnline => GameSession.Mode == MatchMode.Online;
+        bool IsVsAi => GameSession.Mode == MatchMode.VsAi;
+
+        static string AiLevelLabel
+        {
+            get
+            {
+                switch (GameSession.AiLevel)
+                {
+                    case AiDifficulty.Easy: return "よわい";
+                    case AiDifficulty.Hard: return "つよい";
+                    default: return "ふつう";
+                }
+            }
+        }
 
         void Start()
         {
@@ -114,6 +128,13 @@ namespace RoundTable.UI
                     StatusText.text = $"通信対戦 / {role}　部屋「{GameSession.Online.RoomId}」　　"
                                     + $"あなたのデッキ: <b>{(_mine != null ? _mine.CharacterName : "―")}</b>"
                                     + "　　（相手のデッキは相手が選びます）";
+                }
+                else if (IsVsAi)
+                {
+                    string step = _pickingOpponent ? "② CPUのデッキを選択"
+                                : (_mine == null ? "① あなたのデッキを選択" : "キャラをクリックで選び直し");
+                    StatusText.text = $"CPU対戦（{AiLevelLabel}）　{step}　　"
+                                    + $"あなた: <b>{Name(_mine)}</b>　VS　CPU: <b>{Name(_opponent)}</b>";
                 }
                 else
                 {

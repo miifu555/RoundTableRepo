@@ -7,6 +7,8 @@ namespace RoundTable.App
     {
         /// <summary>同じPCで2人が交互に操作する。</summary>
         HotSeat,
+        /// <summary>簡易AIと対戦する。</summary>
+        VsAi,
         /// <summary>GitHub 経由の通信対戦。</summary>
         Online,
     }
@@ -28,6 +30,9 @@ namespace RoundTable.App
         /// <summary>シャッフルの乱数シード。オンラインでは両者で必ず一致させる。</summary>
         public static int Seed;
 
+        /// <summary>CPU対戦の強さ (Mode == VsAi のときのみ使う)。</summary>
+        public static AiDifficulty AiLevel = AiDifficulty.Normal;
+
         /// <summary>オンライン設定 (Mode == Online のときのみ使う)。</summary>
         public static OnlineConfig Online = new OnlineConfig();
 
@@ -37,6 +42,7 @@ namespace RoundTable.App
         public static void ResetToDefaults()
         {
             Mode = MatchMode.HotSeat;
+            AiLevel = AiDifficulty.Normal;
             Deck0 = null;
             Deck1 = null;
             LocalPlayerIndex = 0;

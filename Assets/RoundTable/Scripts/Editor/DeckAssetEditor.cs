@@ -141,6 +141,13 @@ namespace RoundTable.EditorTools
                     if (GUILayout.Button("＋", EditorStyles.miniButtonRight, GUILayout.Width(24)))
                         countProp.intValue++;
 
+                    // 仕様書と枚数が違う行に印を付ける
+                    var specProp = element.FindPropertyRelative(nameof(DeckEntry.SpecCount));
+                    bool customized = specProp.intValue > 0 && specProp.intValue != countProp.intValue;
+                    EditorGUILayout.LabelField(
+                        customized ? new GUIContent("*", $"仕様書では {specProp.intValue} 枚") : GUIContent.none,
+                        EditorStyles.miniBoldLabel, GUILayout.Width(10));
+
                     using (new EditorGUI.DisabledScope(i == 0))
                         if (GUILayout.Button("▲", EditorStyles.miniButtonLeft, GUILayout.Width(20)))
                         { moveFrom = i; moveTo = i - 1; }

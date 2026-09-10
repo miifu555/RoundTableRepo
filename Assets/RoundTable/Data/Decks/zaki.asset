@@ -20,14 +20,20 @@ MonoBehaviour:
   PortraitIcon: {fileID: 0}
   Entries:
   - Card: {fileID: 5433728125699997265, guid: b1f4fb23a3bc6a5418fd9d700f4b709d, type: 3}
-    Count: 3
-  - Card: {fileID: 8078618589101540486, guid: 1ffba7fa180fc114f944bb2634878da8, type: 3}
-    Count: 3
-  - Card: {fileID: 283820635950147332, guid: e5aa49bdc6ca01a4ea2e4785ff5c9111, type: 3}
-    Count: 1
-  - Card: {fileID: 5822982888495069802, guid: bad9165a0ec393440a27e4d7c164ee54, type: 3}
-    Count: 2
-  - Card: {fileID: 5751608379531012456, guid: bf779b2248d54aa4c85d1c86daf99d27, type: 3}
     Count: 4
+    SpecCount: 4
+  - Card: {fileID: 8078618589101540486, guid: 1ffba7fa180fc114f944bb2634878da8, type: 3}
+    Count: 2
+    SpecCount: 2
+  - Card: {fileID: 283820635950147332, guid: e5aa49bdc6ca01a4ea2e4785ff5c9111, type: 3}
+    Count: 2
+    SpecCount: 2
+  - Card: {fileID: 5822982888495069802, guid: bad9165a0ec393440a27e4d7c164ee54, type: 3}
+    Count: 3
+    SpecCount: 3
+  - Card: {fileID: 5751608379531012456, guid: bf779b2248d54aa4c85d1c86daf99d27, type: 3}
+    Count: 2
+    SpecCount: 2
   - Card: {fileID: 3566539172707327121, guid: a0f044c4d48b988479b84633be314d7f, type: 3}
     Count: 2
+    SpecCount: 2

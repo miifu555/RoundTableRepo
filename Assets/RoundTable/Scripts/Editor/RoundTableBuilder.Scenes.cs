@@ -131,17 +131,35 @@ namespace RoundTable.EditorTools
 
             // ---- モード選択 ----
             var mode = UiBuilder.Node("ModePanel", rootRt);
-            UiBuilder.Place(mode, 560, 260, 800, 440);
+            UiBuilder.Place(mode, 560, 214, 800, 540);
 
-            var hotSeat = UiBuilder.TextButton(mode, "HotSeatButton", 0, 20, 800, 110,
+            var vsAi = UiBuilder.TextButton(mode, "VsAiButton", 0, 0, 800, 92,
+                "CPUと対戦", 30, UiBuilder.PanelSoft, UiBuilder.TextMain);
+            UiBuilder.Text(mode, "VsAiHint", 0, 96, 800, 36,
+                "1人で遊べます。CPUの強さは下で選べます。",
+                18, UiBuilder.TextDim, TextAlignmentOptions.Center);
+
+            // CPUの強さ (よわい / ふつう / つよい)
+            var difficultyButtons = new Button[3];
+            string[] levelNames = { "よわい", "ふつう", "つよい" };
+            for (int i = 0; i < 3; i++)
+            {
+                bool selected = i == 1; // 既定は「ふつう」
+                difficultyButtons[i] = UiBuilder.TextButton(mode, "Difficulty" + i, i * 270f, 138, 260, 52,
+                    levelNames[i], 22,
+                    selected ? UiBuilder.Gold : UiBuilder.PanelSoft,
+                    selected ? Color.black : UiBuilder.TextMain);
+            }
+
+            var hotSeat = UiBuilder.TextButton(mode, "HotSeatButton", 0, 214, 800, 92,
                 "同じPCで2人対戦（ホットシート）", 30, UiBuilder.PanelSoft, UiBuilder.TextMain);
-            UiBuilder.Text(mode, "HotSeatHint", 0, 138, 800, 44,
+            UiBuilder.Text(mode, "HotSeatHint", 0, 310, 800, 36,
                 "1台の画面を交代しながら遊びます。手番でない側の手札は隠れます。",
                 18, UiBuilder.TextDim, TextAlignmentOptions.Center);
 
-            var online = UiBuilder.TextButton(mode, "OnlineButton", 0, 210, 800, 110,
+            var online = UiBuilder.TextButton(mode, "OnlineButton", 0, 352, 800, 92,
                 "通信対戦（GitHub経由）", 30, UiBuilder.GoldDim, Color.white);
-            UiBuilder.Text(mode, "OnlineHint", 0, 328, 800, 66,
+            UiBuilder.Text(mode, "OnlineHint", 0, 448, 800, 66,
                 "GitHub のリポジトリを郵便受けにして離れた相手と対戦します。\nリポジトリは固定なので、アクセストークンと部屋名だけ用意すれば始められます。",
                 18, UiBuilder.TextDim, TextAlignmentOptions.Center);
 
@@ -193,6 +211,8 @@ namespace RoundTable.EditorTools
 
             screen.ModePanel = mode.gameObject;
             screen.HotSeatButton = hotSeat;
+            screen.VsAiButton = vsAi;
+            screen.DifficultyButtons = difficultyButtons;
             screen.OnlineButton = online;
             screen.OnlinePanel = onlinePanel.gameObject;
             screen.RepoInfoText = repoInfo;

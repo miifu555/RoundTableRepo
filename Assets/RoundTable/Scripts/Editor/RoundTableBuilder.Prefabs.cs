@@ -265,9 +265,30 @@ namespace RoundTable.EditorTools
                     var savedData = savedGo != null ? savedGo.GetComponent<CardData>() : null;
                     if (savedData != null) list.Add(savedData);
                 }
+                DeleteOrphanCards(folder, deck);
                 result[deck.Id] = list;
             }
             return result;
+        }
+
+        /// <summary>
+        /// 仕様書から消えたカードのプレハブを削除する。
+        /// (残しておくとデッキアセットに幽霊カードとして残り続けるため)
+        /// </summary>
+        static void DeleteOrphanCards(string folder, DeckDef deck)
+        {
+            var alive = new HashSet<string>();
+            foreach (var c in deck.Cards) alive.Add(c.Id);
+
+            foreach (var guid in AssetDatabase.FindAssets("t:Prefab", new[] { folder }))
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                string id = Path.GetFileNameWithoutExtension(path);
+                if (alive.Contains(id)) continue;
+
+                AssetDatabase.DeleteAsset(path);
+                Debug.Log($"[RoundTable] 仕様書から消えたカードを削除: {path}");
+            }
         }
 
         // =====================================================================
@@ -375,15 +396,15 @@ namespace RoundTable.EditorTools
         static List<DeckEntry> RebuildEntries(DeckAsset asset, DeckDef seed,
             Dictionary<string, List<CardData>> cardsByDeck)
         {
-            // 前回の枚数を カードID で覚えておく
-            var previousCounts = new Dictionary<string, int>();
+            // 前回の行を カードID で覚えておく
+            var previous = new Dictionary<string, DeckEntry>();
             var carriedOver = new List<DeckEntry>();
             if (asset.Entries != null)
             {
                 foreach (var e in asset.Entries)
                 {
                     if (e == null || e.Card == null) continue;
-                    previousCounts[e.Card.CardId] = e.Count;
+                    previous[e.Card.CardId] = e;
                 }
             }
 
@@ -409,8 +430,13 @@ namespace RoundTable.EditorTools
             foreach (var seedCard in seed.Cards)
             {
                 if (!byId.TryGetValue(seedCard.Id, out var card)) continue;
-                int count = previousCounts.TryGetValue(seedCard.Id, out var prev) ? prev : seedCard.Count;
-                entries.Add(new DeckEntry(card, count));
+
+                // 仕様書の枚数から手で変えてある行だけ、その枚数を残す。
+                // 仕様書側が書き換わった場合は新しい値に従う。
+                previous.TryGetValue(seedCard.Id, out var prev);
+                int count = prev != null && prev.IsCountCustomized ? prev.Count : seedCard.Count;
+
+                entries.Add(new DeckEntry(card, count, seedCard.Count));
             }
             entries.AddRange(carriedOver);
             return entries;

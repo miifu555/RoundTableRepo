@@ -21,13 +21,19 @@ MonoBehaviour:
   Entries:
   - Card: {fileID: 1345566135835329579, guid: 5a07b09127f8ec54abd4a8487f7bf1dc, type: 3}
     Count: 2
+    SpecCount: 2
   - Card: {fileID: 5860819182379779225, guid: 425b2e847d64aaf4487e9b448a836255, type: 3}
-    Count: 4
+    Count: 5
+    SpecCount: 5
   - Card: {fileID: 6750846214579370080, guid: e9c775a3b5d0e5f47a842c06bd2ec4dd, type: 3}
     Count: 2
+    SpecCount: 2
   - Card: {fileID: 2938608782260330410, guid: 2bfbd9ad8a063d64b956d1e95de2a91a, type: 3}
     Count: 2
+    SpecCount: 2
   - Card: {fileID: 3136024434574820041, guid: 8b9b898782e20284287f4429537771b9, type: 3}
-    Count: 3
+    Count: 2
+    SpecCount: 2
   - Card: {fileID: 8568891516588556255, guid: 8153df8827311234fbae5ac533aa11d6, type: 3}
     Count: 2
+    SpecCount: 2

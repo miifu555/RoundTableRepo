@@ -139,6 +139,7 @@ namespace RoundTable.UI
 
         string RoleLabel(int index)
         {
+            if (Match.IsVsAi) return index == GameSession.LocalPlayerIndex ? "YOU" : "CPU";
             if (Match.IsOnline) return index == GameSession.LocalPlayerIndex ? "YOU" : "OPPONENT";
             return index == 0 ? "PLAYER 1" : "PLAYER 2";
         }
@@ -246,7 +247,7 @@ namespace RoundTable.UI
         {
             if (HandContainer == null) return;
 
-            bool hidden = !Match.IsOnline && GameSession.HideInactiveHand && p.Index != Game.CurrentIndex;
+            bool hidden = !Match.IsFixedSeat && GameSession.HideInactiveHand && p.Index != Game.CurrentIndex;
             int n = p.Hand.Count;
 
             if (HandEmptyLabel != null)
@@ -322,7 +323,9 @@ namespace RoundTable.UI
             int cur = Game.CurrentIndex;
 
             string who;
-            if (Match.IsOnline)
+            if (Match.IsVsAi)
+                who = cur == GameSession.LocalPlayerIndex ? "あなたのターン" : "CPUのターン（思考中）";
+            else if (Match.IsOnline)
                 who = cur == GameSession.LocalPlayerIndex ? "あなたのターン" : "相手のターン（待機中）";
             else
                 who = $"プレイヤー{cur + 1} のターン";
@@ -415,15 +418,15 @@ namespace RoundTable.UI
             if (ResultOverlay != null) ResultOverlay.SetActive(show);
             if (!show) return;
 
-            int me = Match.IsOnline ? GameSession.LocalPlayerIndex : 0;
+            int me = Match.IsFixedSeat ? GameSession.LocalPlayerIndex : 0;
 
             if (Game.Phase == GamePhase.MatchOver)
             {
                 int w = Game.MatchWinnerIndex;
                 if (ResultTitle != null)
                 {
-                    ResultTitle.text = w < 0 ? "DRAW" : (Match.IsOnline ? (w == me ? "WIN" : "LOSE") : $"PLAYER {w + 1} WIN");
-                    ResultTitle.color = w < 0 ? Color.white : ((!Match.IsOnline || w == me) ? GoldColor : DangerColor);
+                    ResultTitle.text = w < 0 ? "DRAW" : (Match.IsFixedSeat ? (w == me ? "WIN" : "LOSE") : $"PLAYER {w + 1} WIN");
+                    ResultTitle.color = w < 0 ? Color.white : ((!Match.IsFixedSeat || w == me) ? GoldColor : DangerColor);
                 }
                 if (ResultSub != null)
                     ResultSub.text = w < 0
@@ -439,9 +442,9 @@ namespace RoundTable.UI
                 if (ResultTitle != null)
                 {
                     ResultTitle.text = rw < 0 ? "引き分け（両者 ^^ 獲得）"
-                                     : (Match.IsOnline ? (rw == me ? "^^ を獲得!" : "^^ を取られた…")
+                                     : (Match.IsFixedSeat ? (rw == me ? "^^ を獲得!" : "^^ を取られた…")
                                                        : $"プレイヤー{rw + 1} が ^^ を獲得!");
-                    ResultTitle.color = rw < 0 ? Color.white : ((!Match.IsOnline || rw == me) ? GoldColor : DangerColor);
+                    ResultTitle.color = rw < 0 ? Color.white : ((!Match.IsFixedSeat || rw == me) ? GoldColor : DangerColor);
                 }
                 if (ResultSub != null)
                     ResultSub.text = $"{Game.Players[0].DisplayName} {Game.Players[0].Dao}  -  {Game.Players[1].Dao} {Game.Players[1].DisplayName}";

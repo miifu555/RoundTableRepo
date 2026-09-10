@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Amount
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: CardId
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: EffectText
-      value: "\u76F8\u624B\u306E\u5C71\u672D\u30925\u679A\u524A\u308B"
+      value: "\u76F8\u624B\u306E\u5C71\u672D\u30926\u679A\u524A\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DisplayName
@@ -44,17 +44,13 @@ PrefabInstance:
       propertyPath: m_text
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 936358893923530162, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 3111598524549102600, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nokuno_a2.png"
       objectReference: {fileID: 0}
-    - target: {fileID: 6002883533835013786, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u7206\u5F3E\u767A\u8A00"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263021200708347089, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6595597300141645347, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Name
@@ -62,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u76F8\u624B\u306E\u5C71\u672D\u30925\u679A\u524A\u308B"
+      value: "\u76F8\u624B\u306E\u5C71\u672D\u30926\u679A\u524A\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -143,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938796879358005927, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -18,13 +18,21 @@ namespace RoundTable.Data
         [Tooltip("このデッキに入れる枚数。")]
         public int Count = 1;
 
+        [Min(0)]
+        [Tooltip("仕様書(Notion)に書かれている枚数。再生成のとき『手で変えたかどうか』の判定にだけ使う。0 は未記録。")]
+        public int SpecCount;
+
         public DeckEntry() { }
 
-        public DeckEntry(CardData card, int count)
+        public DeckEntry(CardData card, int count, int specCount = 0)
         {
             Card = card;
             Count = count;
+            SpecCount = specCount > 0 ? specCount : count;
         }
+
+        /// <summary>仕様書の枚数から手で変えられているか。</summary>
+        public bool IsCountCustomized => SpecCount > 0 && Count != SpecCount;
 
         public bool IsValid => Card != null && Count > 0;
     }
