@@ -120,3 +120,6 @@ InitTestScene*.unity*
 
 # 配布用に手元へ退避した通信トークン (Assets の外なのでビルドには含まれない)
 /RoundTableToken.local.txt
+
+# WebGL などのビルド成果物
+/Build/
