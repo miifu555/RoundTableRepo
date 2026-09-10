@@ -137,11 +137,18 @@ namespace RoundTable.Core
                 else
                 {
                     // シャッフルタイプは自分の番が来るまで待つと後攻のときに手札0枚のまま
-                    // 相手の1ターン目を過ごすことになるので、ラウンド開始時に先に
-                    // 1回シャッフルドローを済ませておく。自分の番が来たら、今の手札ごと
-                    // 山に戻してまたシャッフルドローするのはこれまで通り (BeginTurn 側)。
+                    // 相手の1ターン目を過ごすことになるので、ラウンド開始時に先に山から
+                    // 4枚引いておく (山は直前の BuildDeck+Shuffle で既に全15枚シャッフル済み)。
+                    // 自分の番が来たら、今の手札ごと山に戻してまたシャッフルドローするのは
+                    // これまで通り (BeginTurn 側)。
+                    //
+                    // 注意: DrawCards() は Phase==RoundOver/MatchOver の間は何もしないガードが
+                    // あり、ここではまだ Phase をこのラウンド用に戻していない (下の
+                    // `Phase = GamePhase.Play;` より前) ため、DrawCards() を使うとラウンド2以降
+                    // で静かに0枚のまま抜けてしまう。ドロー時トリガーも要らないので直接移動する。
                     AddLog($"  [{p.DisplayName}] 開始時のシャッフルドロー");
-                    DrawCards(p, ShuffleTypeDrawCount);
+                    for (int n = 0; n < ShuffleTypeDrawCount && p.DrawPile.Count > 0; n++)
+                        MoveTop(p.DrawPile, p.Hand);
                 }
             }
 
