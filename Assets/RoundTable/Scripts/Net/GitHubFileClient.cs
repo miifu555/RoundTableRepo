@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -43,7 +44,12 @@ namespace RoundTable.Net
 
         void AddHeaders(UnityWebRequest req)
         {
-            req.SetRequestHeader("Authorization", "Bearer " + _cfg.EffectiveToken);
+            // トークンが無いときは付けない。空の Bearer は必ず 401 になるが、
+            // 公開リポジトリなら未認証の GET は通る (読むだけのデバッグ用途で効く)。
+            var token = _cfg.EffectiveToken;
+            if (!string.IsNullOrWhiteSpace(token))
+                req.SetRequestHeader("Authorization", "Bearer " + token);
+
             req.SetRequestHeader("Accept", "application/vnd.github+json");
             req.SetRequestHeader("X-GitHub-Api-Version", "2022-11-28");
 
@@ -183,6 +189,72 @@ namespace RoundTable.Net
             }
         }
 
+        // =====================================================================
+        // 一覧と削除 (デバッグメニューのルーム掃除で使う)
+        // =====================================================================
+
+        /// <summary>ディレクトリの中身を1階層ぶん取る。無ければ空リストで Ok=true。</summary>
+        public IEnumerator ListDirectory(string path, Action<bool, List<DirEntry>, string> done)
+        {
+            using (var req = UnityWebRequest.Get(ContentsUrl(path, true)))
+            {
+                AddHeaders(req);
+                yield return req.SendWebRequest();
+
+                if (req.responseCode == 404)
+                {
+                    done?.Invoke(true, new List<DirEntry>(), null);
+                    yield break;
+                }
+                if (req.result != UnityWebRequest.Result.Success)
+                {
+                    done?.Invoke(false, null, Describe(req));
+                    yield break;
+                }
+
+                List<DirEntry> entries;
+                try
+                {
+                    // ディレクトリは JSON 配列で返る。JsonUtility は配列を直接読めないので包む。
+                    var wrapped = "{\"items\":" + req.downloadHandler.text + "}";
+                    var parsed = JsonUtility.FromJson<DirListing>(wrapped);
+                    entries = parsed?.items != null ? new List<DirEntry>(parsed.items) : new List<DirEntry>();
+                }
+                catch (Exception e)
+                {
+                    done?.Invoke(false, null, "一覧の解析に失敗: " + e.Message);
+                    yield break;
+                }
+
+                done?.Invoke(true, entries, null);
+            }
+        }
+
+        /// <summary>ファイルを1つ消す。sha は ListDirectory / Get で取れるもの。</summary>
+        public IEnumerator Delete(string path, string sha, string commitMessage, Action<FileResult> done)
+        {
+            var body = new StringBuilder();
+            body.Append('{');
+            body.Append("\"message\":").Append(JsonString(commitMessage)).Append(',');
+            body.Append("\"sha\":").Append(JsonString(sha)).Append(',');
+            body.Append("\"branch\":").Append(JsonString(_cfg.Branch));
+            body.Append('}');
+
+            using (var req = new UnityWebRequest(ContentsUrl(path, false), "DELETE"))
+            {
+                req.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(body.ToString()));
+                req.downloadHandler = new DownloadHandlerBuffer();
+                req.SetRequestHeader("Content-Type", "application/json");
+                AddHeaders(req);
+
+                yield return req.SendWebRequest();
+
+                done?.Invoke(req.result == UnityWebRequest.Result.Success
+                    ? new FileResult { Ok = true }
+                    : FileResult.Fail(Describe(req), req.responseCode));
+            }
+        }
+
         static string Describe(UnityWebRequest req)
         {
             var body = req.downloadHandler != null ? req.downloadHandler.text : null;
@@ -223,6 +295,25 @@ namespace RoundTable.Net
                 public bool push;
                 public bool pull;
             }
+        }
+
+        /// <summary>ディレクトリ一覧の1件。</summary>
+        [Serializable]
+        public struct DirEntry
+        {
+            public string name;
+            public string path;
+            /// <summary>"file" か "dir"。</summary>
+            public string type;
+            public string sha;
+
+            public bool IsDirectory => type == "dir";
+        }
+
+        [Serializable]
+        class DirListing
+        {
+            public DirEntry[] items;
         }
 
         [Serializable]

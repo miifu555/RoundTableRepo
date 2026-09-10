@@ -56,6 +56,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.2239
       objectReference: {fileID: 0}
+    - target: {fileID: 1588807474680724188, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4573
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588807474680724188, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3405
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588807474680724188, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2239
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738272772724318386, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u9244\u58C1\u306E\u8A00\u3044\u8A33"
+      objectReference: {fileID: 0}
     - target: {fileID: 2412584622540287019, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\ntoshi_f2.png"
@@ -72,10 +88,6 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.298
       objectReference: {fileID: 0}
-    - target: {fileID: 4799111336971937570, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u30D5\u30A3\u30FC\u30EB\u30C9\uFF08\u5E38\u5728\uFF09"
-      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u9244\u58C1\u306E\u8A00\u3044\u8A33"
@@ -84,9 +96,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: toshi_f2
       objectReference: {fileID: 0}
-    - target: {fileID: 7620770725460669825, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 7052985630806280254, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u9244\u58C1\u306E\u8A00\u3044\u8A33"
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
@@ -172,21 +184,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7884256238704496668, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 9101965018547373481, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9001649527728772664, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.b
-      value: 0.4573
-      objectReference: {fileID: 0}
-    - target: {fileID: 9001649527728772664, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.g
-      value: 0.3405
-      objectReference: {fileID: 0}
-    - target: {fileID: 9001649527728772664, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.r
-      value: 0.2239
+      value: "\u30D5\u30A3\u30FC\u30EB\u30C9\uFF08\u5E38\u5728\uFF09"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

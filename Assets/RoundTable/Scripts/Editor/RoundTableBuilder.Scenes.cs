@@ -225,7 +225,96 @@ namespace RoundTable.EditorTools
             screen.OnlineBackButton = back;
             screen.StatusText = status;
 
+            BuildDebugMenu(rootRt);
+
             SaveScene(scene, SceneFlow.Title);
+        }
+
+        /// <summary>
+        /// 開発者用のデバッグメニュー。入口は右下の小さなボタンで、
+        /// 開発者コードのハッシュが焼き込まれていないと実行時に隠れる。
+        /// </summary>
+        static void BuildDebugMenu(RectTransform parent)
+        {
+            var screen = parent.gameObject.AddComponent<DebugMenuScreen>();
+
+            // 入口 (右下の目立たないボタン)
+            var open = UiBuilder.TextButton(parent, "DebugOpenButton", RefW - 108, RefH - 52, 88, 36,
+                "dev", 18, new Color(0.16f, 0.15f, 0.19f, 0.9f), new Color(0.45f, 0.43f, 0.50f, 1f));
+
+            // オーバーレイ全体。後ろのタイトルメニューが透けたり押せたりしないように、
+            // 不透明な幕を全面に敷いてからパネルを載せる。
+            var overlay = UiBuilder.Node("DebugOverlay", parent);
+            UiBuilder.Place(overlay, 0, 0, RefW, RefH);
+
+            var shade = UiBuilder.Flat(overlay, "Shade", 0, 0, RefW, RefH, new Color(0.02f, 0.02f, 0.03f, 0.97f));
+            UiBuilder.Stretch(shade.rectTransform);
+            shade.raycastTarget = true;   // 後ろのボタンを押せなくする
+
+            // パネル
+            var panel = UiBuilder.Panel3(overlay, "DebugPanel", 360, 170, 1200, 740,
+                new Color(0.145f, 0.133f, 0.176f, 1f), true);
+            UiBuilder.Text(panel.transform, "Header", 0, 18, 1200, 44, "デバッグメニュー", 30,
+                UiBuilder.Gold, TextAlignmentOptions.Center, true);
+            UiBuilder.Text(panel.transform, "Note", 28, 66, 1144, 30,
+                "GitHub に残った対戦ルームを消します。途中でタブを閉じたときの後始末用です。",
+                18, UiBuilder.TextDim, TextAlignmentOptions.Left);
+
+            var close = UiBuilder.TextButton(panel.transform, "CloseButton", 1200 - 148, 16, 128, 44,
+                "閉じる", 20, UiBuilder.PanelSoft, UiBuilder.TextMain);
+
+            // --- コード入力 ---
+            var locked = UiBuilder.Node("LockedGroup", panel.transform);
+            UiBuilder.Place(locked, 0, 0, 1200, 740);
+            UiBuilder.Text(locked, "Label", 28, 150, 260, 56, "開発者コード", 22,
+                UiBuilder.TextMain, TextAlignmentOptions.Left);
+            var codeField = UiBuilder.InputField(locked, "CodeField", 300, 150, 620, 56, "コードを入力", 22);
+            var unlock = UiBuilder.TextButton(locked, "UnlockButton", 940, 150, 232, 56,
+                "解除", 24, UiBuilder.GoldDim, Color.white);
+
+            // --- メニュー本体 ---
+            var unlocked = UiBuilder.Node("UnlockedGroup", panel.transform);
+            UiBuilder.Place(unlocked, 0, 0, 1200, 740);
+
+            var refresh = UiBuilder.TextButton(unlocked, "RefreshButton", 28, 110, 280, 52,
+                "ルーム一覧を取得", 22, UiBuilder.PanelSoft, UiBuilder.TextMain);
+            var deleteAll = UiBuilder.TextButton(unlocked, "DeleteAllButton", 892, 110, 280, 52,
+                "全部削除", 22, new Color(0.42f, 0.20f, 0.20f, 1f), Color.white);
+
+            const int rows = 8;
+            var rowObjects = new GameObject[rows];
+            var labels = new TMP_Text[rows];
+            var deletes = new Button[rows];
+            for (int i = 0; i < rows; i++)
+            {
+                float y = 180 + i * 56;
+                var bg = UiBuilder.Panel3(unlocked, "Row" + i, 28, y, 1144, 48,
+                    i % 2 == 0 ? new Color(0.11f, 0.10f, 0.13f, 1f) : new Color(0.17f, 0.16f, 0.20f, 1f));
+                rowObjects[i] = bg.gameObject;
+                labels[i] = UiBuilder.Text(bg.transform, "Label", 16, 0, 940, 48, "", 20,
+                    UiBuilder.TextMain, TextAlignmentOptions.Left);
+                deletes[i] = UiBuilder.TextButton(unlocked, "Delete" + i, 1000, y + 4, 160, 40,
+                    "削除", 18, new Color(0.42f, 0.20f, 0.20f, 1f), Color.white);
+            }
+
+            var status = UiBuilder.Text(unlocked, "StatusText", 28, 644, 1144, 70, "", 20,
+                UiBuilder.TextDim, TextAlignmentOptions.TopLeft);
+
+            overlay.gameObject.SetActive(false);
+
+            screen.OpenButton = open;
+            screen.Panel = overlay.gameObject;
+            screen.CloseButton = close;
+            screen.LockedGroup = locked.gameObject;
+            screen.CodeField = codeField;
+            screen.UnlockButton = unlock;
+            screen.UnlockedGroup = unlocked.gameObject;
+            screen.RefreshButton = refresh;
+            screen.DeleteAllButton = deleteAll;
+            screen.StatusText = status;
+            screen.RoomRows = rowObjects;
+            screen.RoomLabels = labels;
+            screen.RoomDeleteButtons = deletes;
         }
 
         // =====================================================================

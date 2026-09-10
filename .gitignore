@@ -123,3 +123,7 @@ InitTestScene*.unity*
 
 # WebGL などのビルド成果物
 /Build/
+
+# デバッグメニューの開発者コード (ハッシュ。ビルドには焼き込むがリポジトリには入れない)
+/Assets/RoundTable/Resources/RoundTableDevCode.txt
+/Assets/RoundTable/Resources/RoundTableDevCode.txt.meta
