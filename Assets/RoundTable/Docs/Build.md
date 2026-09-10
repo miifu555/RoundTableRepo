@@ -66,9 +66,37 @@ MCP パッケージの Runtime アセンブリ `com.IvanMurzak.Unity.MCP.Runtime
 - 初回の読み込みは 30MB 前後。Wi-Fi 推奨。2回目からはキャッシュされます
 - **CPU対戦は1人で遊べます。** 対人は同じ端末を回すホットシートか、通信対戦（`Online.md`）です
 
-## 公開する場合
+## GitHub Pages で公開する
 
-`Build/WebGL` の中身をそのまま静的ホスティングに置けば動きます（GitHub Pages / Netlify / Cloudflare Pages など）。
+`Build/WebGL` の中身を `gh-pages` ブランチとして push するだけです。CI も Unity ライセンスの登録も要りません。
 
-> ⚠️ **通信対戦のトークンを焼き込んだままブラウザで公開しないでください。**
-> ビルドの中身は誰でも取り出せます。詳しくは `Online.md` を参照。
+```bash
+bash Tools/deploy-pages.sh
+```
+
+このスクリプトは毎回 **1コミットだけの orphan ブランチ**として作り直して force push します。
+WebGL の出力は差分の効かないバイナリが 28MB あり、履歴を積むとリポジトリが太るためです。
+
+初回だけ GitHub 側で2つ設定します。
+
+1. **Settings → General → Danger Zone → Change repository visibility → Public**
+   （Private のまま Pages を使うには有料プランが必要）
+2. **Settings → Pages → Source: Deploy from a branch → Branch: `gh-pages` / `/ (root)`**
+
+数分待つと次の URL で遊べるようになります。
+
+```
+https://miifu555.github.io/RoundTableRepo/
+```
+
+更新したいときは、Unity で作り直して `bash Tools/deploy-pages.sh` を叩き直すだけです。
+
+> ⚠️ **Public にすると URL を知っている人は誰でも遊べます。**
+> また **通信対戦のトークンを焼き込んだまま公開しないでください。**
+> ブラウザ版はビルドの中身を誰でも取り出せます（`Online.md` 参照）。
+> 現在この構成にはトークンは含まれていません（各自がタイトル画面で入力する方式）。
+
+## 他のホスティング
+
+`Build/WebGL` の中身をそのまま置けば、Netlify / Cloudflare Pages / 自前のサーバーでも動きます。
+gzip + 展開フォールバック有効なので、`Content-Encoding` を付けられないホスティングでも問題ありません。
