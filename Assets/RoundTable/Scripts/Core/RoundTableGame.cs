@@ -38,10 +38,10 @@ namespace RoundTable.Core
 
         /// <summary>
         /// 初手の手札枚数。仕様書に記載が無いための補完。
-        /// シャッフルタイプは自分の番の頭で4枚引くため0枚から開始する。
+        /// シャッフルタイプは0枚ではなく、ラウンド開始時に1回シャッフルドロー (4枚) を済ませる。
+        /// 後攻になったとき、自分の番が来るまで手札0枚で待たされるのを防ぐため。
         /// </summary>
         public const int DrawTypeOpeningHand = 4;
-        public const int ShuffleTypeOpeningHand = 0;
 
         /// <summary>
         /// 1ラウンドの手番数の上限 (ハウスルール)。仕様書に千日手の規定が無く、
@@ -128,9 +128,21 @@ namespace RoundTable.Core
                 BuildDeck(p);
                 Shuffle(p.DrawPile);
                 p.Energy = BaseMaxEnergy;
-                int opening = p.Deck.DrawStyle == DrawStyle.Draw ? DrawTypeOpeningHand : ShuffleTypeOpeningHand;
-                for (int n = 0; n < opening && p.DrawPile.Count > 0; n++)
-                    MoveTop(p.DrawPile, p.Hand);
+
+                if (p.Deck.DrawStyle == DrawStyle.Draw)
+                {
+                    for (int n = 0; n < DrawTypeOpeningHand && p.DrawPile.Count > 0; n++)
+                        MoveTop(p.DrawPile, p.Hand);
+                }
+                else
+                {
+                    // シャッフルタイプは自分の番が来るまで待つと後攻のときに手札0枚のまま
+                    // 相手の1ターン目を過ごすことになるので、ラウンド開始時に先に
+                    // 1回シャッフルドローを済ませておく。自分の番が来たら、今の手札ごと
+                    // 山に戻してまたシャッフルドローするのはこれまで通り (BeginTurn 側)。
+                    AddLog($"  [{p.DisplayName}] 開始時のシャッフルドロー");
+                    DrawCards(p, ShuffleTypeDrawCount);
+                }
             }
 
             CurrentIndex = _roundStarterIndex;
