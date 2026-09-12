@@ -1,6 +1,13 @@
-# WebGL ビルド（ブラウザで遊べるようにする）
+# ビルドして配る（WebGL / Windows）
 
-## ビルドする
+配り方は2通りあります。
+
+- **WebGL**: ブラウザで URL を開くだけで遊べる。GitHub Pages で公開するため、
+  リポジトリを Public にする必要がある
+- **Windows**: `.exe` を直接渡す。公開ホスティングを経由しないので、
+  実写イラストなど見せる相手を限定したい絵を使うならこちら（後述の「Windows ビルドで配る」）
+
+## WebGL をビルドする
 
 Unity メニュー **「Round Table / WebGL をビルド」**。出力先は `Build/WebGL`（`.gitignore` 済み）。
 
@@ -65,6 +72,42 @@ MCP パッケージの Runtime アセンブリ `com.IvanMurzak.Unity.MCP.Runtime
   スマホでは押している間だけ反応します。気になるならタップで拡大に変えるのが良いです
 - 初回の読み込みは 30MB 前後。Wi-Fi 推奨。2回目からはキャッシュされます
 - **CPU対戦は1人で遊べます。** 対人は同じ端末を回すホットシートか、通信対戦（`Online.md`）です
+
+## Windows ビルドで配る（実写イラストを使うとき向け）
+
+WebGL 版は `gh-pages` を経由するため、リポジトリを Public にする必要があり、
+イラストの実データが誰でも見られる URL に置かれます。**カードの絵に実写（本人の顔写真など）を
+使うつもりなら、公開ホスティングを経由しない Windows ビルドで配るほうが安全です。**
+
+### ビルドする
+
+Unity メニュー **「Round Table / Windows をビルド」**。出力先は `Build/Windows`（`.gitignore` 済み）。
+WebGL と違って IL2CPP/Emscripten のコンパイルが無いので数分で終わります。
+
+コマンドラインから叩く場合（Unity エディタを閉じてから）:
+
+```bash
+"C:\Program Files\Unity\Hub\Editor\6000.3.8f1\Editor\Unity.exe" -batchmode -quit -nographics -projectPath "D:\Unity\RoundTable" -executeMethod RoundTable.EditorTools.WindowsBuild.BuildFromCommandLine -buildOutput Build/Windows
+```
+
+成否は `Build/windows-build-result.txt` に残ります。
+
+### 配り方
+
+`Build/Windows` フォルダごと zip にして、Google ドライブや Discord など**GitHub を経由しない方法**で
+友人に直接渡してください。`RoundTable.exe` をダブルクリックすれば遊べます。インストール不要です。
+
+- **このリポジトリを Public にする必要はありません。** WebGL 版と違い、GitHub Pages を使わないためです
+  （通信対戦の郵便受けである `RoundTableLobby` は別リポジトリなので、そちらの公開設定には影響しません）
+- 初回起動時に **Windows SmartScreen が「WindowsによってPCが保護されました」と警告を出すことがあります。**
+  署名していない個人開発のビルドなら普通に起きることです。「詳細情報」→「実行」で進めます
+
+### ⚠️ これは「絶対に流出しない」という意味ではありません
+
+zip を渡した相手は `RoundTable_Data` フォルダの中身を、AssetStudio のような専用ツールで
+開けば画像を取り出せます。WebGL 版のように**検索エンジンや偶然踏んだ誰かに見られる**リスクは
+無くなりますが、**渡す相手は信頼できる人に限定してください**。実写を人に見せるときの
+一般的な注意と同じです。
 
 ## GitHub Pages で公開する
 
