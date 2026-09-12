@@ -580,10 +580,27 @@ namespace RoundTable.Core
             return b;
         }
 
+        /// <summary>この人が与えるダメージへの常在ボーナス合計 (すどー《たぎる闘志》など)。</summary>
+        public int DamageBoostOf(PlayerState p)
+        {
+            int b = 0;
+            foreach (var f in p.Fields)
+                if (f.Def.Effect != null && f.Def.Effect.Kind == EffectKind.PassiveDamageBoost)
+                    b += f.Def.Effect.Amount;
+            return b;
+        }
+
         void DealDamage(PlayerState target, PlayerState source, int amount, bool byCard)
         {
             if (Phase == GamePhase.RoundOver || Phase == GamePhase.MatchOver) return;
             if (amount <= 0) return;
+
+            int boost = DamageBoostOf(source);
+            if (boost > 0)
+            {
+                AddLog($"  [{source.DisplayName}] 攻撃力ボーナス +{boost}");
+                amount += boost;
+            }
 
             int reduction = DamageReductionOf(target);
             int actual = Math.Max(0, amount - reduction);

@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Amount
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: CardId
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: EffectText
-      value: "\u76F8\u624B\u306E\u6C17\u529B\u30924\u524A\u308B"
+      value: "\u76F8\u624B\u306E\u6C17\u529B\u30923\u524A\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DisplayName
@@ -44,15 +44,15 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nsudo_a1.png"
       objectReference: {fileID: 0}
-    - target: {fileID: 3186264544600841767, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 3676937196222781757, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5059645360016567783, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u53F3\u30B9\u30C8\u30EC\u30FC\u30C8"
       objectReference: {fileID: 0}
-    - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 6560496548531383005, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u53F3\u30B9\u30C8\u30EC\u30FC\u30C8"
       objectReference: {fileID: 0}
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u76F8\u624B\u306E\u6C17\u529B\u30924\u524A\u308B"
+      value: "\u76F8\u624B\u306E\u6C17\u529B\u30923\u524A\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x

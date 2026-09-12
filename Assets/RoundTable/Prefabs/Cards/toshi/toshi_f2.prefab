@@ -56,18 +56,6 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.2239
       objectReference: {fileID: 0}
-    - target: {fileID: 1717792169816769425, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.b
-      value: 0.4573
-      objectReference: {fileID: 0}
-    - target: {fileID: 1717792169816769425, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.g
-      value: 0.3405
-      objectReference: {fileID: 0}
-    - target: {fileID: 1717792169816769425, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.r
-      value: 0.2239
-      objectReference: {fileID: 0}
     - target: {fileID: 2412584622540287019, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\ntoshi_f2.png"
@@ -84,19 +72,31 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.298
       objectReference: {fileID: 0}
-    - target: {fileID: 3186264544600841767, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 3676937196222781757, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5059645360016567783, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u4FDD\u8EAB\u306B\u8D70\u308B"
+    - target: {fileID: 3998203214668057541, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4573
       objectReference: {fileID: 0}
-    - target: {fileID: 5957607117774570596, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 3998203214668057541, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3405
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998203214668057541, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2239
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615788089539964309, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u30D5\u30A3\u30FC\u30EB\u30C9\uFF08\u5E38\u5728\uFF09"
       objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u4FDD\u8EAB\u306B\u8D70\u308B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560496548531383005, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u4FDD\u8EAB\u306B\u8D70\u308B"
       objectReference: {fileID: 0}

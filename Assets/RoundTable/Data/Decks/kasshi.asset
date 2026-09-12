@@ -23,8 +23,8 @@ MonoBehaviour:
     Count: 6
     SpecCount: 6
   - Card: {fileID: 7218034387314082437, guid: f5a705fce2bc3d347b1509b36d213f3f, type: 3}
-    Count: 4
-    SpecCount: 4
+    Count: 3
+    SpecCount: 3
   - Card: {fileID: 619964436079487243, guid: 6877554124b25de459fb551085572b39, type: 3}
     Count: 2
     SpecCount: 2
@@ -32,5 +32,5 @@ MonoBehaviour:
     Count: 1
     SpecCount: 1
   - Card: {fileID: 8320507539003884551, guid: 0884cb0e256938b4c9ab173132dc03f6, type: 3}
-    Count: 2
-    SpecCount: 2
+    Count: 3
+    SpecCount: 3

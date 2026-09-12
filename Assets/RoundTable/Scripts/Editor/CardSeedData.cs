@@ -9,7 +9,7 @@ namespace RoundTable.EditorTools
     /// これはプレハブ / DeckAsset を一括生成するための「初期データ」で、ゲーム実行時には使われない。
     /// 生成後の編集は Prefabs/Cards/ と Data/Decks/ の各アセットで行うこと。
     /// カード名が仕様書で空欄だったものは仮称を付けている (末尾に「(仮)」は付けず、
-    /// ここを書き換えるだけで反映される)。今のところ空欄なのは すどー と 林 の全カード。
+    /// ここを書き換えるだけで反映される)。今のところ空欄なのは 林 の全カード。
     /// </summary>
     public static class CardSeedData
     {
@@ -123,10 +123,10 @@ namespace RoundTable.EditorTools
             // 2026-09-11 の仕様更新で、すどーと丸ごとデッキが入れ替わった。
             Deck("kasshi", "かっしー", "アグロ(必殺)", DrawStyle.Draw);
             Atk("a1", "捨て身タックル", 7, 6, "自分の手札を好きなだけトラッシュして、その枚数分相手の気力を削る", E(EffectKind.DamageBySacrificedHand));
-            Atk("a2", "気迫", 1, 4, "1枚カードを引く", E(EffectKind.DrawCards, 1));
+            Atk("a2", "気迫", 1, 3, "1枚カードを引く", E(EffectKind.DrawCards, 1));
             Atk("a3", "四皇としての意地", 2, 2, "相手のフィールドを１つ破壊する", E(EffectKind.DestroyOpponentField, 1));
             Atk("a4", "白虎進軍", 9, 1, "6面サイコロで6が出たら、相手の気力を10削る。それ以外ならターンを終わる。", E(EffectKind.AllOrNothingDamage, 10, diceSides: 6));
-            Fld("f1", "闘争心", 2, 2, "カードで気力を削られたとき、2枚ドローする", TriggerKind.OnDamagedByCard, E(EffectKind.DrawCards, 2));
+            Fld("f1", "闘争心", 2, 3, "カードで気力を削られたとき、2枚ドローする", TriggerKind.OnDamagedByCard, E(EffectKind.DrawCards, 2));
 
             // ===== しょー　アグロ(連撃) / シャッフルタイプ =====
             Deck("show", "しょー", "アグロ(連撃)", DrawStyle.Shuffle);
@@ -153,21 +153,19 @@ namespace RoundTable.EditorTools
             Fld("f1", "攪乱", 3, 5, "カードで気力を削られたとき、相手の手札をランダムに2枚トラッシュする", TriggerKind.OnDamagedByCard, E(EffectKind.DiscardOpponentHand, 2));
 
             // ===== すどー　アグロ(一点集中) / ドロータイプ =====
-            // 2026-09-11 の仕様更新で、かっしーと丸ごとデッキが入れ替わった。
-            // 仕様書のカード名が空欄なので、旧かっしー当時の名前をそのまま仮称として使っている。
+            // 2026-09-12 の仕様更新でデッキ内容が刷新された (前回の仮称は使わず、新しい構成に置き換え)。
             Deck("sudo", "すどー", "アグロ(一点集中)", DrawStyle.Draw);
-            Atk("a1", "右ストレート", 5, 2, "相手の気力を4削る", E(EffectKind.Damage, 4));
-            Atk("a2", "タックル", 7, 2, "相手の気力を6削る", E(EffectKind.Damage, 6));
-            Atk("a3", "深呼吸", 3, 3, "カードを1枚引く", E(EffectKind.DrawCards, 1));
-            Atk("a4", "なぎ払い", 5, 2, "相手のフィールドを2個破壊する", E(EffectKind.DestroyOpponentField, 2));
-            Atk("a5", "大振り", 4, 3, "6面サイコロで出た目分気力を削る", E(EffectKind.DamageDice, diceSides: 6));
-            Fld("f1", "反抗心", 4, 3, "気力を削られた時、カードを1枚ドローする", TriggerKind.OnDamaged, E(EffectKind.DrawCards, 1));
+            Atk("a1", "右ストレート", 5, 4, "相手の気力を3削る", E(EffectKind.Damage, 3));
+            Atk("a2", "マチアプするぞ！", 2, 3, "カードを1枚引く", E(EffectKind.DrawCards, 1));
+            Atk("a3", "暴力反対デモ", 5, 2, "相手のフィールドを2個破壊する", E(EffectKind.DestroyOpponentField, 2));
+            Atk("a4", "出たとこ勝負", 5, 2, "4面サイコロで出た目分気力を削る", E(EffectKind.DamageDice, diceSides: 4));
+            Fld("f1", "たぎる闘志", 3, 4, "自分が削る気力を+2する", TriggerKind.None, E(EffectKind.PassiveDamageBoost, 2));
 
             // ===== りくと　アグロ(ミッドレンジ) / シャッフルタイプ =====
             Deck("rikuto", "りくと", "アグロ(ミッドレンジ)", DrawStyle.Shuffle);
             Atk("a1", "スポ大の意地", 3, 3, "相手の気力を3削る", E(EffectKind.Damage, 3));
             Atk("a2", "盗撮", 2, 3, "相手の気力を2削る", E(EffectKind.Damage, 2));
-            Atk("a3", "闘志", 2, 3, "1枚カードを引く", E(EffectKind.DrawCards, 1));
+            Atk("a3", "マチアプするぞ！", 2, 3, "1枚カードを引く", E(EffectKind.DrawCards, 1));
             Atk("a4", "コートの破壊", 3, 3, "相手のフィールドを2つ破壊する", E(EffectKind.DestroyOpponentField, 2));
             Fld("f1", "おちょくる", 1, 3, "このフィールドが破壊されたとき、互いにカードを2枚引く", TriggerKind.OnThisDestroyed, E(EffectKind.BothPlayersDraw, 2));
 

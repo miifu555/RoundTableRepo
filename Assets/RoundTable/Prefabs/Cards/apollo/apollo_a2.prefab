@@ -44,15 +44,15 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\napollo_a2.png"
       objectReference: {fileID: 0}
-    - target: {fileID: 3186264544600841767, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 3676937196222781757, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5059645360016567783, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u904B\u547D\u306E\u30C9\u30ED\u30FC"
       objectReference: {fileID: 0}
-    - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 6560496548531383005, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u904B\u547D\u306E\u30C9\u30ED\u30FC"
       objectReference: {fileID: 0}

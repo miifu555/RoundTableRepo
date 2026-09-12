@@ -20,20 +20,17 @@ MonoBehaviour:
   PortraitIcon: {fileID: 0}
   Entries:
   - Card: {fileID: 3501289875244689297, guid: 33aee1ef5cf84e647a2ece9e80c6f031, type: 3}
-    Count: 2
-    SpecCount: 2
+    Count: 4
+    SpecCount: 4
   - Card: {fileID: 4631698468082114115, guid: 85198802113011844a8710a1ff7bf855, type: 3}
-    Count: 2
-    SpecCount: 2
-  - Card: {fileID: 743470638499627743, guid: b99a64bda0df8f142bddd80c4b640547, type: 3}
     Count: 3
     SpecCount: 3
+  - Card: {fileID: 743470638499627743, guid: b99a64bda0df8f142bddd80c4b640547, type: 3}
+    Count: 2
+    SpecCount: 2
   - Card: {fileID: 6086404142831075898, guid: 4740ed18097138341b8c09e010fa3841, type: 3}
     Count: 2
     SpecCount: 2
-  - Card: {fileID: 5496764134555279300, guid: f0f9d4d53aae5fb48ba9da1f27f970f5, type: 3}
-    Count: 3
-    SpecCount: 3
   - Card: {fileID: 7044795385840033673, guid: f85855c49cd5e214db86f913ee0a88e6, type: 3}
-    Count: 3
-    SpecCount: 3
+    Count: 4
+    SpecCount: 4

@@ -47,6 +47,7 @@ namespace RoundTable.Core
         PassiveDamageReduction,         // 削られる気力を Amount 減らす
         PassiveDiceBonus,               // ダイスの出目を Amount 増やす
         PassiveOpponentMaxEnergyDown,   // 相手の気力の最大値を Amount 減らす
+        PassiveDamageBoost,             // 自分が与えるダメージを Amount 増やす
     }
 
     /// <summary>フィールドカードの効果が発動するタイミング。</summary>

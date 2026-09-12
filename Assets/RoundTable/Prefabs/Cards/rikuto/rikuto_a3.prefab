@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DisplayName
-      value: "\u95D8\u5FD7"
+      value: "\u30DE\u30C1\u30A2\u30D7\u3059\u308B\u305E\uFF01"
       objectReference: {fileID: 0}
     - target: {fileID: 552406869893267891, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
@@ -44,17 +44,17 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nrikuto_a3.png"
       objectReference: {fileID: 0}
-    - target: {fileID: 3186264544600841767, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 3676937196222781757, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5059645360016567783, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u95D8\u5FD7"
-      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u95D8\u5FD7"
+      value: "\u30DE\u30C1\u30A2\u30D7\u3059\u308B\u305E\uFF01"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560496548531383005, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u30DE\u30C1\u30A2\u30D7\u3059\u308B\u305E\uFF01"
       objectReference: {fileID: 0}
     - target: {fileID: 6595597300141645347, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Name
