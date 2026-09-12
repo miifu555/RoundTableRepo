@@ -40,6 +40,14 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\ntoshi_a4.png"
       objectReference: {fileID: 0}
+    - target: {fileID: 3186264544600841767, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059645360016567783, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u7206\u7761\u306E\u6975\u307F"
+      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u7206\u7761\u306E\u6975\u307F"
@@ -51,10 +59,6 @@ PrefabInstance:
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u3053\u306E\u30BF\u30FC\u30F3\u306E\u3042\u3068\u3001\u30A8\u30AF\u30B9\u30C8\u30E9\u30BF\u30FC\u30F3\u3092\u5F97\u308B"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7695227316868315516, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u7206\u7761\u306E\u6975\u307F"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -135,10 +139,6 @@ PrefabInstance:
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922627118722183336, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

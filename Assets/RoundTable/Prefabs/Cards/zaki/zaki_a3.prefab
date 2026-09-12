@@ -44,6 +44,14 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nzaki_a3.png"
       objectReference: {fileID: 0}
+    - target: {fileID: 3186264544600841767, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059645360016567783, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u8A08\u753B\u7684\u64A4\u53BB"
+      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u8A08\u753B\u7684\u64A4\u53BB"
@@ -55,10 +63,6 @@ PrefabInstance:
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u76F8\u624B\u306E\u30D5\u30A3\u30FC\u30EB\u30C9\u3092\u4E00\u3064\u7834\u58CA\u3059\u308B"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7695227316868315516, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u8A08\u753B\u7684\u64A4\u53BB"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -139,10 +143,6 @@ PrefabInstance:
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922627118722183336, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

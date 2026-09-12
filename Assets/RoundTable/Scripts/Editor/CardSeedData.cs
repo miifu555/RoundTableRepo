@@ -5,7 +5,7 @@ using RoundTable.Core;
 namespace RoundTable.EditorTools
 {
     /// <summary>
-    /// Notion 仕様書「Round Table(円卓カードゲーム)」のデッキ表 (2026-09-11 更新ぶんを反映)。
+    /// Notion 仕様書「Round Table(円卓カードゲーム)」のデッキ表 (2026-09-12 更新ぶんを反映)。
     /// これはプレハブ / DeckAsset を一括生成するための「初期データ」で、ゲーム実行時には使われない。
     /// 生成後の編集は Prefabs/Cards/ と Data/Decks/ の各アセットで行うこと。
     /// カード名が仕様書で空欄だったものは仮称を付けている (末尾に「(仮)」は付けず、
@@ -104,10 +104,10 @@ namespace RoundTable.EditorTools
 
             // ===== ざき　コントロール(盤面妨害) / ドロータイプ =====
             Deck("zaki", "ざき", "コントロール(盤面妨害)", DrawStyle.Draw);
-            Atk("a1", "ツッこむ", 1, 4, "相手の気力を2削る", E(EffectKind.Damage, 2));
+            Atk("a1", "暴力へのレッドカード", 1, 4, "相手の気力を2削る", E(EffectKind.Damage, 2));
             Atk("a2", "下調べ", 1, 2, "2枚カードを引く", E(EffectKind.DrawCards, 2));
             Atk("a3", "計画的撤去", 2, 2, "相手のフィールドを一つ破壊する", E(EffectKind.DestroyOpponentField, 1));
-            Fld("f1", "暴力へのレッドカード", 1, 3, "気力を削られた時、相手の気力も2削る", TriggerKind.OnDamaged, E(EffectKind.Damage, 2));
+            Fld("f1", "望まぬタンク", 1, 3, "気力を削られた時、相手の気力も2削る", TriggerKind.OnDamaged, E(EffectKind.Damage, 2));
             Fld("f2", "連帯責任", 3, 2, "気力を削られた時、相手のフィールドを一つ破壊する", TriggerKind.OnDamaged, E(EffectKind.DestroyOpponentField, 1));
             Fld("f3", "便乗", 5, 2, "相手が攻撃カードの効果でドローしたとき、自分も同じ枚数引ける", TriggerKind.OnOpponentDraw, E(EffectKind.DrawSameAsOpponent));
 
@@ -116,7 +116,7 @@ namespace RoundTable.EditorTools
             Atk("a1", "四皇としての意地", 3, 2, "相手の気力を3削る", E(EffectKind.Damage, 3));
             Atk("a2", "爆弾発言", 3, 5, "相手の山札を6枚削る", E(EffectKind.MillOpponentDeck, 6));
             Atk("a3", "5億で買うえ", 2, 2, "3枚カードを引く", E(EffectKind.DrawCards, 3));
-            Atk("a4", "殴り合いじゃぁ!!!", 1, 2, "4面サイコロで出た目-2個相手のフィールドを破壊する", E(EffectKind.DestroyOpponentFieldDice, diceSides: 4, modifier: -2));
+            Atk("a4", "脅迫", 1, 2, "4面サイコロで出た目-2個相手のフィールドを破壊する", E(EffectKind.DestroyOpponentFieldDice, diceSides: 4, modifier: -2));
             Fld("f1", "挑発", 2, 4, "気力を削られた時、相手の山札を上から3枚削る", TriggerKind.OnDamaged, E(EffectKind.MillOpponentDeck, 3));
 
             // ===== かっしー　アグロ(必殺) / ドロータイプ =====
@@ -125,7 +125,7 @@ namespace RoundTable.EditorTools
             Atk("a1", "捨て身タックル", 7, 6, "自分の手札を好きなだけトラッシュして、その枚数分相手の気力を削る", E(EffectKind.DamageBySacrificedHand));
             Atk("a2", "気迫", 1, 4, "1枚カードを引く", E(EffectKind.DrawCards, 1));
             Atk("a3", "四皇としての意地", 2, 2, "相手のフィールドを１つ破壊する", E(EffectKind.DestroyOpponentField, 1));
-            Atk("a4", "令和のホワイトタイガー", 9, 1, "6面サイコロで6が出たら、相手の気力を10削る。それ以外ならターンを終わる。", E(EffectKind.AllOrNothingDamage, 10, diceSides: 6));
+            Atk("a4", "白虎進軍", 9, 1, "6面サイコロで6が出たら、相手の気力を10削る。それ以外ならターンを終わる。", E(EffectKind.AllOrNothingDamage, 10, diceSides: 6));
             Fld("f1", "闘争心", 2, 2, "カードで気力を削られたとき、2枚ドローする", TriggerKind.OnDamagedByCard, E(EffectKind.DrawCards, 2));
 
             // ===== しょー　アグロ(連撃) / シャッフルタイプ =====
