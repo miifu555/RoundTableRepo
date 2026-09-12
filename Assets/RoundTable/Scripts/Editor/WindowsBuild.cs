@@ -14,6 +14,11 @@ namespace RoundTable.EditorTools
     /// 実写イラストを使うときはこちらで配る方が安全 (zip にして直接友人に渡す想定。
     /// リポジトリには絶対に入れないこと。.gitignore 済み)。
     ///
+    /// 実写は Art/Photos/ (.gitignore 済み) に置く。ビルドの瞬間だけ
+    /// <see cref="RoundTableArtImporter.AssignPhotosOverlay"/> で割り当て、終わったら
+    /// <see cref="RoundTableArtImporter.ResetToPublicArtOnly"/> で公開用に戻す。
+    /// これにより WebGL には絶対に実写が混ざらない (WebGLBuild.cs 側でも強制リセットする)。
+    ///
     /// - メニュー「Round Table / Windows をビルド」から実行（出力先は Build/Windows）
     /// - CI から叩く場合は batchmode で
     ///   Unity -batchmode -quit -executeMethod RoundTable.EditorTools.WindowsBuild.BuildFromCommandLine
@@ -62,14 +67,26 @@ namespace RoundTable.EditorTools
             var exePath = Path.Combine(output, ExeName);
             Debug.Log($"[WindowsBuild] 出力先: {Path.GetFullPath(exePath)}\n  シーン: {string.Join(", ", scenes)}");
 
-            var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+            BuildReport report;
+            // Photos フォルダ (実写・.gitignore 済み) の絵を、ビルドする瞬間だけ割り当てる。
+            // 成功・失敗にかかわらず、終わったら必ず公開用の状態に戻す
+            // (このままエディタを保存/コミットしても実写が残らないように)。
+            RoundTableArtImporter.AssignPhotosOverlay();
+            try
             {
-                scenes = scenes,
-                locationPathName = exePath,
-                target = BuildTarget.StandaloneWindows64,
-                targetGroup = BuildTargetGroup.Standalone,
-                options = BuildOptions.None,
-            });
+                report = BuildPipeline.BuildPlayer(new BuildPlayerOptions
+                {
+                    scenes = scenes,
+                    locationPathName = exePath,
+                    target = BuildTarget.StandaloneWindows64,
+                    targetGroup = BuildTargetGroup.Standalone,
+                    options = BuildOptions.None,
+                });
+            }
+            finally
+            {
+                RoundTableArtImporter.ResetToPublicArtOnly();
+            }
 
             var summary = report.summary;
             bool ok = summary.result == BuildResult.Succeeded;

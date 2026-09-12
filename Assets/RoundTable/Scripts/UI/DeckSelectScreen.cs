@@ -10,6 +10,10 @@ namespace RoundTable.UI
     /// <summary>キャラ(デッキ)選択画面。</summary>
     public sealed class DeckSelectScreen : MonoBehaviour
     {
+        [Header("背景")]
+        public Image Background;
+        public GameObject BackgroundPlaceholder;
+
         [Header("グリッド")]
         public RectTransform Grid;
         public DeckCell CellPrefab;
@@ -55,6 +59,17 @@ namespace RoundTable.UI
         void Start()
         {
             var db = GameDatabase.Instance;
+
+            // シーン生成時に焼き込んだ背景ではなく、今の GameDatabase の値を使う。
+            // ビルド直前に絵の割り当てを差し替える仕組み (実写⇔公開用) と噛み合わせるため。
+            bool hasBg = db != null && db.TitleBackground != null;
+            if (Background != null)
+            {
+                Background.sprite = hasBg ? db.TitleBackground : null;
+                Background.gameObject.SetActive(hasBg);
+            }
+            if (BackgroundPlaceholder != null) BackgroundPlaceholder.SetActive(!hasBg);
+
             if (db == null || CellPrefab == null || Grid == null) return;
 
             for (int i = 0; i < db.Decks.Count; i++)

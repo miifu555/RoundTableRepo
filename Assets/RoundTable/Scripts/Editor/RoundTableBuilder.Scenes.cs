@@ -120,12 +120,14 @@ namespace RoundTable.EditorTools
         static void BuildTitleScene(GameDatabase db)
         {
             var safe = NewScene(out var scene);
-            AddBackground(safe, db.TitleBackground,
-                $"タイトル背景 {ArtSizes.BackgroundW}×{ArtSizes.BackgroundH} 未設定 (GameDatabase の Title Background に割り当て)", out _);
+            var bgImage = AddBackground(safe, db.TitleBackground,
+                $"タイトル背景 {ArtSizes.BackgroundW}×{ArtSizes.BackgroundH} 未設定 (GameDatabase の Title Background に割り当て)", out var bgPlaceholder);
 
             var rootRt = UiBuilder.Node("TitleScreen", safe);
             UiBuilder.Place(rootRt, 0, 0, RefW, RefH);
             var screen = rootRt.gameObject.AddComponent<TitleScreen>();
+            screen.Background = bgImage;
+            screen.BackgroundPlaceholder = bgPlaceholder;
 
             UiBuilder.Text(rootRt, "Title", 0, 40, RefW, 88, "Round Table", 58, UiBuilder.Gold, TextAlignmentOptions.Center, true);
             UiBuilder.Text(rootRt, "Lead", 0, 126, RefW, 40, "始めよう、変人たちの狂宴を。", 24, UiBuilder.TextDim, TextAlignmentOptions.Center);
@@ -414,12 +416,14 @@ namespace RoundTable.EditorTools
         static void BuildDeckSelectScene(GameDatabase db)
         {
             var safe = NewScene(out var scene);
-            AddBackground(safe, db.TitleBackground,
-                $"背景 {ArtSizes.BackgroundW}×{ArtSizes.BackgroundH} 未設定 (GameDatabase の Title Background に割り当て)", out _);
+            var bgImage = AddBackground(safe, db.TitleBackground,
+                $"背景 {ArtSizes.BackgroundW}×{ArtSizes.BackgroundH} 未設定 (GameDatabase の Title Background に割り当て)", out var bgPlaceholder);
 
             var rootRt = UiBuilder.Node("DeckSelectScreen", safe);
             UiBuilder.Place(rootRt, 0, 0, RefW, RefH);
             var screen = rootRt.gameObject.AddComponent<DeckSelectScreen>();
+            screen.Background = bgImage;
+            screen.BackgroundPlaceholder = bgPlaceholder;
 
             UiBuilder.Text(rootRt, "Title", 0, 28, RefW, 56, "Round Table", 46, UiBuilder.Gold, TextAlignmentOptions.Center, true);
             UiBuilder.Text(rootRt, "Lead", 0, 86, RefW, 34, "デッキを選んでください", 22, UiBuilder.TextDim, TextAlignmentOptions.Center);

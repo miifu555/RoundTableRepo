@@ -1,5 +1,6 @@
 using System.Collections;
 using RoundTable.App;
+using RoundTable.Data;
 using RoundTable.Net;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,10 @@ namespace RoundTable.UI
     /// <summary>タイトル画面。対戦モードの選択と、通信対戦の設定を行う。</summary>
     public sealed class TitleScreen : MonoBehaviour
     {
+        [Header("背景")]
+        public Image Background;
+        public GameObject BackgroundPlaceholder;
+
         [Header("モード選択")]
         public GameObject ModePanel;
         public Button HotSeatButton;
@@ -46,6 +51,17 @@ namespace RoundTable.UI
         void Start()
         {
             GameSession.ResetToDefaults();
+
+            // シーン生成時に焼き込んだ背景ではなく、今の GameDatabase の値を使う。
+            // ビルド直前に絵の割り当てを差し替える仕組み (実写⇔公開用) と噛み合わせるため。
+            var db = GameDatabase.Instance;
+            bool hasBg = db != null && db.TitleBackground != null;
+            if (Background != null)
+            {
+                Background.sprite = hasBg ? db.TitleBackground : null;
+                Background.gameObject.SetActive(hasBg);
+            }
+            if (BackgroundPlaceholder != null) BackgroundPlaceholder.SetActive(!hasBg);
 
             _cfg = GameSession.Online;
             _cfg.Load();

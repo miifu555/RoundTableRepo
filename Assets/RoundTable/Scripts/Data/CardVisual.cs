@@ -72,7 +72,8 @@ namespace RoundTable.Data
             if (FullCardOverride != null)
             {
                 FullCardOverride.gameObject.SetActive(hasFull);
-                if (hasFull) FullCardOverride.sprite = data.FullCardImage;
+                // 無いときは参照ごと外す (ApplyArt と同じ理由)。
+                FullCardOverride.sprite = data.FullCardImage;
             }
 
             // --- Full ---
@@ -99,7 +100,9 @@ namespace RoundTable.Data
             if (art != null)
             {
                 art.gameObject.SetActive(has);
-                if (has) art.sprite = sprite;
+                // sprite が無いときは参照ごと外す。非表示にするだけだと、直前まで
+                // 割り当たっていたスプライト (実写など) への参照がプレハブに残ってしまう。
+                art.sprite = sprite;
             }
             if (placeholder != null) placeholder.gameObject.SetActive(!has);
         }

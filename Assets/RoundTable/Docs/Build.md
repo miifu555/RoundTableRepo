@@ -92,6 +92,24 @@ WebGL と違って IL2CPP/Emscripten のコンパイルが無いので数分で�
 
 成否は `Build/windows-build-result.txt` に残ります。
 
+### 実写は自動で Windows だけに入る
+
+実写（本人の顔写真など）は `Art/` ではなく **`Art/Photos/`** に置いてください。中のフォルダ構成は
+`Art/` と同じです（`Art/Photos/CardArt/toshi_a1.png` のように）。`Art/Photos/` は丸ごと
+`.gitignore` 済みで、GitHub には一切上がりません。
+
+- **Windows ビルドを実行した瞬間だけ** `Art/Photos/` の絵が割り当てられ、ビルドが終わると
+  （成功でも失敗でも）自動で公開用の絵に戻ります。プロジェクトを保存したまま放置しても、
+  実写が割り当たった状態は残りません
+- **WebGL ビルドには絶対に混ざりません。** `Round Table / WebGL をビルド` は実行するたびに、
+  何が割り当たっていても強制的に公開用へリセットしてから焼きます
+- ビルドせずエディタでプレビューしたいときはメニュー
+  **「Round Table / 実写を割り当てる (Windows限定)」**。手動で戻すなら
+  **「Round Table / 実写を外す (公開用に戻す)」**
+
+`Art/` （公開用）にしか絵が無いカードは、Windows ビルドでもそのまま公開用の絵が使われます。
+実写を用意した分だけ差し替わる仕組みです。
+
 ### 配り方
 
 `Build/Windows` フォルダごと zip にして、Google ドライブや Discord など**GitHub を経由しない方法**で
