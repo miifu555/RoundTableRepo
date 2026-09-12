@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Cost
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Amount
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: CardId
@@ -26,31 +26,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Effect
-      value: 7
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: DiceSides
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: EffectText
-      value: "\u76F8\u624B\u306E\u30D5\u30A3\u30FC\u30EB\u30C9\u30922\u500B\u7834\u58CA\u3059\u308B"
+      value: "6\u9762\u30B5\u30A4\u30B3\u30ED\u30676\u304C\u51FA\u305F\u3089\u3001\u76F8\u624B\u306E\u6C17\u529B\u309210\u524A\u308B\u3002\u305D\u308C\u4EE5\u5916\u306A\u3089\u30BF\u30FC\u30F3\u3092\u7D42\u308F\u308B\u3002"
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DisplayName
-      value: "\u306A\u304E\u6255\u3044"
+      value: "\u4EE4\u548C\u306E\u30DB\u30EF\u30A4\u30C8\u30BF\u30A4\u30AC\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 552406869893267891, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145895250883638391, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2412584622540287019, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nkasshi_a4.png"
       objectReference: {fileID: 0}
+    - target: {fileID: 2918737481936324941, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u4EE4\u548C\u306E\u30DB\u30EF\u30A4\u30C8\u30BF\u30A4\u30AC\u30FC"
+      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u306A\u304E\u6255\u3044"
+      value: "\u4EE4\u548C\u306E\u30DB\u30EF\u30A4\u30C8\u30BF\u30A4\u30AC\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 6595597300141645347, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Name
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u76F8\u624B\u306E\u30D5\u30A3\u30FC\u30EB\u30C9\u30922\u500B\u7834\u58CA\u3059\u308B"
+      value: "6\u9762\u30B5\u30A4\u30B3\u30ED\u30676\u304C\u51FA\u305F\u3089\u3001\u76F8\u624B\u306E\u6C17\u529B\u309210\u524A\u308B\u3002\u305D\u308C\u4EE5\u5916\u306A\u3089\u30BF\u30FC\u30F3\u3092\u7D42\u308F\u308B\u3002"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -140,9 +144,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8803828350514000957, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 8204216297017788584, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u306A\u304E\u6255\u3044"
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -41,6 +41,8 @@ namespace RoundTable.Core
         DestroyTriggeringField,     // 誘発元の相手フィールドを破壊する (OnOpponentPlayField 専用)
         BothPlayersDraw,            // 互いに Amount 枚引く
 
+        AllOrNothingDamage,         // DiceSides面ダイスで最大目が出たら Amount 削る。外れたら自分のターンを即終了する
+
         // ---- 常在効果 (フィールドカード / Trigger == None) ----
         PassiveDamageReduction,         // 削られる気力を Amount 減らす
         PassiveDiceBonus,               // ダイスの出目を Amount 増やす

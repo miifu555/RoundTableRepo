@@ -515,6 +515,21 @@ namespace RoundTable.Core
                     case EffectKind.DamageBySacrificedHand:
                         // 選択フローで解決済み
                         break;
+
+                    case EffectKind.AllOrNothingDamage:
+                    {
+                        int roll = RollDice(self, e.DiceSides);
+                        if (roll >= e.DiceSides)
+                        {
+                            DealDamage(opp, self, e.Amount, byAttackCard);
+                        }
+                        else
+                        {
+                            AddLog($"  [{self.DisplayName}] 出目が届かず不発。ターンを終える");
+                            EndTurn();
+                        }
+                        break;
+                    }
                 }
             }
             finally

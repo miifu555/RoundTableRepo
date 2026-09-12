@@ -34,13 +34,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DisplayName
-      value: "\u4E0D\u610F\u6253\u3061"
+      value: "\u30C4\u30C3\u30B3\u30DF\u3092\u5165\u308C\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 552406869893267891, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1145895250883638391, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: 2
       objectReference: {fileID: 0}
@@ -48,9 +44,13 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\napollo_a1.png"
       objectReference: {fileID: 0}
+    - target: {fileID: 2918737481936324941, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u30C4\u30C3\u30B3\u30DF\u3092\u5165\u308C\u308B"
+      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u4E0D\u610F\u6253\u3061"
+      value: "\u30C4\u30C3\u30B3\u30DF\u3092\u5165\u308C\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 6595597300141645347, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Name
@@ -140,9 +140,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8803828350514000957, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 8204216297017788584, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u4E0D\u610F\u6253\u3061"
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

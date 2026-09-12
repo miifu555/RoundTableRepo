@@ -14,26 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
   DeckId: kasshi
   CharacterName: "\u304B\u3063\u3057\u30FC"
-  Archetype: "\u30A2\u30B0\u30ED(\u4E00\u70B9\u96C6\u4E2D)"
+  Archetype: "\u30A2\u30B0\u30ED(\u5FC5\u6BBA)"
   DrawStyle: 0
   Portrait: {fileID: 0}
   PortraitIcon: {fileID: 0}
   Entries:
   - Card: {fileID: 4490204374056221370, guid: ae1e6ecde759af041ae3c94410099bea, type: 3}
-    Count: 2
-    SpecCount: 2
+    Count: 6
+    SpecCount: 6
   - Card: {fileID: 7218034387314082437, guid: f5a705fce2bc3d347b1509b36d213f3f, type: 3}
-    Count: 2
-    SpecCount: 2
+    Count: 4
+    SpecCount: 4
   - Card: {fileID: 619964436079487243, guid: 6877554124b25de459fb551085572b39, type: 3}
-    Count: 3
-    SpecCount: 3
-  - Card: {fileID: 2327431052601871865, guid: 5b623a615f26b9a48b0b406307ec2ab1, type: 3}
     Count: 2
     SpecCount: 2
-  - Card: {fileID: 6150085676692333443, guid: 5031fd9bc8583c04bacb5cf2315f4e11, type: 3}
-    Count: 3
-    SpecCount: 3
+  - Card: {fileID: 2327431052601871865, guid: 5b623a615f26b9a48b0b406307ec2ab1, type: 3}
+    Count: 1
+    SpecCount: 1
   - Card: {fileID: 8320507539003884551, guid: 0884cb0e256938b4c9ab173132dc03f6, type: 3}
-    Count: 3
-    SpecCount: 3
+    Count: 2
+    SpecCount: 2

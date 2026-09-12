@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8549919104929475153
+--- !u!1001 &5461693603999989919
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,55 +10,55 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Cost
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: Amount
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: CardId
-      value: show_a2
+      value: sudo_a5
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DeckId
-      value: show
+      value: sudo
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Effect
-      value: 5
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: DiceSides
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: EffectText
-      value: "\u30AB\u30FC\u30C9\u30922\u679A\u5F15\u304F"
+      value: "6\u9762\u30B5\u30A4\u30B3\u30ED\u3067\u51FA\u305F\u76EE\u5206\u6C17\u529B\u3092\u524A\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DisplayName
-      value: "\u5C71\u767B\u308A"
+      value: "\u5927\u632F\u308A"
       objectReference: {fileID: 0}
     - target: {fileID: 552406869893267891, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2412584622540287019, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "ILLUST\n440\xD7330\nshow_a2.png"
+      value: "ILLUST\n440\xD7330\nsudo_a5.png"
       objectReference: {fileID: 0}
     - target: {fileID: 2918737481936324941, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u5C71\u767B\u308A"
+      value: "\u5927\u632F\u308A"
       objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u5C71\u767B\u308A"
+      value: "\u5927\u632F\u308A"
       objectReference: {fileID: 0}
     - target: {fileID: 6595597300141645347, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Name
-      value: show_a2
+      value: sudo_a5
       objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u30AB\u30FC\u30C9\u30922\u679A\u5F15\u304F"
+      value: "6\u9762\u30B5\u30A4\u30B3\u30ED\u3067\u51FA\u305F\u76EE\u5206\u6C17\u529B\u3092\u524A\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8204216297017788584, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

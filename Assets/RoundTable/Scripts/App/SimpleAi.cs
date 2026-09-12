@@ -190,6 +190,16 @@ namespace RoundTable.App
                 }
                 case EffectKind.ExtraTurn:
                     return 60;
+
+                case EffectKind.AllOrNothingDamage:
+                {
+                    // 外れると即ターン終了になる分、確定ダメージより価値を割り引く。
+                    // Amount は固定10・気力の上限も通常10なので、ほぼ常に「当たれば致命傷」になる。
+                    int dmg = Effective(e.Amount, reduction);
+                    int successPct = e.DiceSides > 0 ? 100 / e.DiceSides : 0;
+                    if (dmg >= opp.Energy) return 80 + successPct * 4;
+                    return dmg * successPct / 10;
+                }
             }
 
             // フィールドカード (常在・誘発)

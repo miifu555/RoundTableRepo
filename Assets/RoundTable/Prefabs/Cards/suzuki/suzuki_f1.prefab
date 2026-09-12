@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: Effect
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: EffectText
@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541479507273916251, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: DisplayName
-      value: "\u52DD\u8CA0\u5E2B\u306E\u52D8"
+      value: "\u733F\u77E5\u6075"
       objectReference: {fileID: 0}
     - target: {fileID: 552406869893267891, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
@@ -56,13 +56,13 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.2239
       objectReference: {fileID: 0}
-    - target: {fileID: 1145895250883638391, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2412584622540287019, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nsuzuki_f1.png"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918737481936324941, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u733F\u77E5\u6075"
       objectReference: {fileID: 0}
     - target: {fileID: 3112812498306669611, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Color.b
@@ -76,27 +76,23 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.298
       objectReference: {fileID: 0}
-    - target: {fileID: 6018572458592171708, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u30D5\u30A3\u30FC\u30EB\u30C9\uFF08\u5E38\u5728\uFF09"
-      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u52DD\u8CA0\u5E2B\u306E\u52D8"
+      value: "\u733F\u77E5\u6075"
       objectReference: {fileID: 0}
     - target: {fileID: 6595597300141645347, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Name
       value: suzuki_f1
       objectReference: {fileID: 0}
-    - target: {fileID: 7249002580642512575, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 7114155227353188261, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Color.b
       value: 0.4573
       objectReference: {fileID: 0}
-    - target: {fileID: 7249002580642512575, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 7114155227353188261, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Color.g
       value: 0.3405
       objectReference: {fileID: 0}
-    - target: {fileID: 7249002580642512575, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 7114155227353188261, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Color.r
       value: 0.2239
       objectReference: {fileID: 0}
@@ -184,9 +180,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8803828350514000957, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 8204216297017788584, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
-      value: "\u52DD\u8CA0\u5E2B\u306E\u52D8"
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687868493520102559, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u30D5\u30A3\u30FC\u30EB\u30C9\uFF08\u5E38\u5728\uFF09"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

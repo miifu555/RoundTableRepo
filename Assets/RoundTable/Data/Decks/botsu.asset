@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: botsu
   m_EditorClassIdentifier: Assembly-CSharp::RoundTable.Data.DeckAsset
   DeckId: botsu
-  CharacterName: "\u6CA1\u30B9\u30C6"
+  CharacterName: "\u6797"
   Archetype: "\u30A2\u30B0\u30ED(\u8A2D\u7F6E)"
   DrawStyle: 1
   Portrait: {fileID: 0}
