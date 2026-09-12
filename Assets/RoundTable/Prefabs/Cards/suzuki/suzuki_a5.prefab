@@ -48,10 +48,6 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nsuzuki_a5.png"
       objectReference: {fileID: 0}
-    - target: {fileID: 3026308019528831060, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u30D1\u30C3\u30AF\u958B\u5C01"
@@ -60,13 +56,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: suzuki_a5
       objectReference: {fileID: 0}
-    - target: {fileID: 6948914672841991310, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u30D1\u30C3\u30AF\u958B\u5C01"
-      objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "4\u9762\u30B5\u30A4\u30B3\u30ED\u3067\u51FA\u305F\u76EE-2\u679A\u30AB\u30FC\u30C9\u3092\u5F15\u304F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695227316868315516, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u30D1\u30C3\u30AF\u958B\u5C01"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -147,6 +143,10 @@ PrefabInstance:
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922627118722183336, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -60,9 +60,17 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nsuzuki_f1.png"
       objectReference: {fileID: 0}
-    - target: {fileID: 3026308019528831060, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 4
+    - target: {fileID: 3032620474367051139, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4573
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032620474367051139, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3405
+      objectReference: {fileID: 0}
+    - target: {fileID: 3032620474367051139, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2239
       objectReference: {fileID: 0}
     - target: {fileID: 3112812498306669611, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Color.b
@@ -76,7 +84,7 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.298
       objectReference: {fileID: 0}
-    - target: {fileID: 6004945132488894343, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+    - target: {fileID: 5404735700212514110, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u30D5\u30A3\u30FC\u30EB\u30C9\uFF08\u5E38\u5728\uFF09"
       objectReference: {fileID: 0}
@@ -88,13 +96,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: suzuki_f1
       objectReference: {fileID: 0}
-    - target: {fileID: 6948914672841991310, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u733F\u77E5\u6075"
-      objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u30C0\u30A4\u30B9\u3092\u632F\u3063\u305F\u6642\u3001\u305D\u306E\u51FA\u76EE\u306F+1\u306B\u306A\u308B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695227316868315516, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u733F\u77E5\u6075"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -176,17 +184,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7926266716756124280, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.b
-      value: 0.4573
-      objectReference: {fileID: 0}
-    - target: {fileID: 7926266716756124280, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.g
-      value: 0.3405
-      objectReference: {fileID: 0}
-    - target: {fileID: 7926266716756124280, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_Color.r
-      value: 0.2239
+    - target: {fileID: 7922627118722183336, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

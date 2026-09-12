@@ -44,10 +44,6 @@ PrefabInstance:
       propertyPath: m_text
       value: "ILLUST\n440\xD7330\nsudo_a4.png"
       objectReference: {fileID: 0}
-    - target: {fileID: 3026308019528831060, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6345500693329681573, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u306A\u304E\u6255\u3044"
@@ -56,13 +52,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: sudo_a4
       objectReference: {fileID: 0}
-    - target: {fileID: 6948914672841991310, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
-      propertyPath: m_text
-      value: "\u306A\u304E\u6255\u3044"
-      objectReference: {fileID: 0}
     - target: {fileID: 7676739665479698506, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_text
       value: "\u76F8\u624B\u306E\u30D5\u30A3\u30FC\u30EB\u30C9\u30922\u500B\u7834\u58CA\u3059\u308B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695227316868315516, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: "\u306A\u304E\u6255\u3044"
       objectReference: {fileID: 0}
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_Pivot.x
@@ -143,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 7862447188853477790, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922627118722183336, guid: 0dc2ffd4eea4c7545b51cfecfa4f4c18, type: 3}
+      propertyPath: m_text
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

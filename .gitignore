@@ -127,7 +127,3 @@ InitTestScene*.unity*
 # デバッグメニューの開発者コード (ハッシュ。ビルドには焼き込むがリポジトリには入れない)
 /Assets/RoundTable/Resources/RoundTableDevCode.txt
 /Assets/RoundTable/Resources/RoundTableDevCode.txt.meta
-
-# 実写など公開したくない絵 (Windows ビルド限定。WebGL には自動で入らない)
-/Assets/RoundTable/Art/Photos/
-/Assets/RoundTable/Art/Photos.meta

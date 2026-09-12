@@ -53,10 +53,6 @@ namespace RoundTable.EditorTools
                 return false;
             }
 
-            // 実写など Photos フォルダの絵が割り当てられていても、WebGL は必ず公開用に戻してから焼く。
-            // (Windows ビルドの直後などに Photos が残ったままここへ来ても安全なようにする、無条件の安全策)
-            RoundTableArtImporter.ResetToPublicArtOnly();
-
             ApplyWebGLSettings();
 
             Directory.CreateDirectory(output);
